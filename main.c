@@ -73,6 +73,10 @@ int main( int argc, char *argv[] )
 
    win_startup( );
 
+   add_message( "Welcome to NoNameYet.\0" );
+   add_message( "Find and kill enemies to capture artifacts and escape the forest.\0" );
+   add_message( "Move with standard hjkl.\0" );
+
    win_update( Y, X );
 
    while ( 1 )

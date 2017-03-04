@@ -10,6 +10,7 @@
 #include <sys/time.h>
 #include <curses.h>
 #include <strings.h>
+#include <string.h>
 
 // Size of the map viewport
 #define MAP_NLINES      23
@@ -42,5 +43,7 @@ void get_input( int *Y, int *X );
 char map_get_item( int Y, int X );
 void map_move_item( int Y, int X, int dy, int dx );
 unsigned long long getTimestamp( void );
+void add_message( char *message );
+char *get_message( int pos );
 
 #endif // __7DRLTYPES_H
