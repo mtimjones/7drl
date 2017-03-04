@@ -6,8 +6,10 @@
 // Common headers used by all source files
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <sys/time.h>
 #include <curses.h>
+#include <strings.h>
 
 // Size of the map viewport
 #define MAP_NLINES      23
@@ -26,6 +28,19 @@
 #define Y_MAP_MAX    500
 
 // 20Hz Game Loop
-#define MS_PER_UPDATE  50
+#define MS_PER_FRAME  50
+
+// Max number of window messages
+#define MAX_MESSAGES   ( NCOLS - MAP_NCOLS - 2 )
+
+// Function prototypes
+void win_map_viewport( int Y, int X );
+void init_messages( void );
+char *get_message( int pos );
+void MapInit( int Py, int Px );
+void get_input( int *Y, int *X );
+char map_get_item( int Y, int X );
+void map_move_item( int Y, int X, int dy, int dx );
+unsigned long long getTimestamp( void );
 
 #endif // __7DRLTYPES_H

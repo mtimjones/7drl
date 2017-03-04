@@ -1,5 +1,11 @@
 
-  o Add a game-loop with time.
+  * Add map generation. (Reused)
+
+  * Add ncurses-based viewport. (Reused)
+
+  * Add player input, ability to move around.
+
+  * Add a game-loop with time.
 
   o Update the UI to permit map, messages, stats, etc.
 
@@ -16,6 +22,8 @@
   o Add A* pathfinding.
 
   o Add reward objects.
+
+  o Enemies carry artifacts, pick a random enemy and show their distance (hint).
 
   o Add escape path (enabled only once # of reward objects captured).
 

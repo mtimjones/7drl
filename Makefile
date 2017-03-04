@@ -1,8 +1,8 @@
-CC=gcc
-CFLAGS = -I.
+CC=gcc 
+CFLAGS = -I. -std=c99
 
 DEPS = 
-OBJS = main.o map.o input.o
+OBJS = main.o map.o input.o messages.o time.o
 
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

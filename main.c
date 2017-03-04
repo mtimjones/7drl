@@ -2,6 +2,8 @@
 
 WINDOW *mainwin;
 
+unsigned int GameTime = 0;
+
 void win_startup( void )
 {
    int offsetx, offsety;
@@ -30,7 +32,15 @@ void win_update( int Y, int X )
    mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( MAP_NCOLS - 1 ) );
    mvwvline( mainwin, 1, ( MAP_NCOLS - 1 ), '|', ( MAP_NLINES - 1 ) );
 
-   mvwprintw( mainwin, 22, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
+   win_map_viewport( Y, X );
+
+   mvwprintw( mainwin, 20, (MAP_NCOLS)+1, "Time     %6d", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
+   mvwprintw( mainwin, 21, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
+
+   for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
+   {
+      mvwprintw( mainwin, 23, 1, "%s", get_message( i ) );
+   }
 
    wrefresh( mainwin );
 
@@ -48,28 +58,13 @@ void win_shutdown( void )
 }
 
 
-unsigned long long getTimestamp( void )
-{
-   struct timeval tv;
-   unsigned long long t1;
-
-   gettimeofday( &tv, NULL );
-
-   t1 = ( tv.tv_sec * 1000000 ) + tv.tv_usec;
-
-   // Convert to ms
-   t1 = t1 / 1000;
-
-   return t1;
-}
-
-
 int main( int argc, char *argv[] )
 {
    int Y, X;
-   unsigned long long curTime;
 
    srand( time( NULL ) );
+
+   init_messages( );
 
    Y = getRand( Y_MAP_MAX );
    X = getRand( X_MAP_MAX );
@@ -80,30 +75,20 @@ int main( int argc, char *argv[] )
 
    win_update( Y, X );
 
-   curTime = getTimestamp( );
-
-   double previous = getTimestamp( );
-   double lag = 0.0;
-
    while ( 1 )
    {
-      double current = getTimestamp( );
-      double elapsed = current - previous;
-
-      previous = current;
-      lag += elapsed;
+      unsigned long long start = getTimestamp( );
 
       get_input( &Y, &X );
 
-      while ( lag > MS_PER_UPDATE )
-      {
-         // Update
-         win_map_viewport( Y, X );
-         win_update( Y, X );
-         wrefresh( mainwin );
+      // Entity system here...
 
-         lag -= MS_PER_UPDATE;
-      }
+      // Update the window
+      win_update( Y, X );
+
+      while ( getTimestamp( ) < start + MS_PER_FRAME );
+
+      GameTime++;
    }
 
    win_shutdown( );
