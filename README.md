@@ -12,7 +12,7 @@ This repo contains the source code for a Seven Day RogueLike entry.
 
 - [x]  Update the UI to permit map.
 
-- [ ]  Update the UI to permit messages.
+- [x]  Update the UI to permit messages.
 
 - [ ]  Update the UI to permit stats.
 
