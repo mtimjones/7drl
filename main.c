@@ -39,7 +39,7 @@ void win_update( int Y, int X )
 
    for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
    {
-      mvwprintw( mainwin, 23, 1, "%s", get_message( i ) );
+      mvwprintw( mainwin, ( 23 + i ), 1, "%s", get_message( i ) );
    }
 
    wrefresh( mainwin );

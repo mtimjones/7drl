@@ -31,7 +31,7 @@
 #define MS_PER_FRAME  20
 
 // Max number of window messages
-#define MAX_MESSAGES   ( NCOLS - MAP_NCOLS - 2 )
+#define MAX_MESSAGES   ( NLINES - MAP_NLINES - 1 )
 
 // Function prototypes
 void win_map_viewport( int Y, int X );

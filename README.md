@@ -10,7 +10,11 @@ This repo contains the source code for a Seven Day RogueLike entry.
 
 - [x]  Add a game-loop with time.
 
-- [ ]  Update the UI to permit map, messages, stats, etc.
+- [x]  Update the UI to permit map.
+
+- [ ]  Update the UI to permit messages.
+
+- [ ]  Update the UI to permit stats.
 
 - [ ]  Add a CES framework for entities in the world.
 
