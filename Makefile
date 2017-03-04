@@ -1,7 +1,7 @@
 CC=gcc 
 CFLAGS = -I. -std=c99
 
-DEPS = 
+DEPS = 7drltypes.h
 OBJS = main.o map.o input.o messages.o time.o
 
 %.o: %.c $(DEPS)
