@@ -56,6 +56,7 @@ void MapInit( int PY, int PX )
       Density += ObstacleCreate( );
    }
 
+   // Place the player on the map.
    map[ PY ][ PX ] = '@';
 
    return;

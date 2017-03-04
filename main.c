@@ -2,8 +2,6 @@
 
 WINDOW *mainwin;
 
-#define MS_PER_UPDATE  100
-
 void win_startup( void )
 {
    int offsetx, offsety;
@@ -32,7 +30,7 @@ void win_update( int Y, int X )
    mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( MAP_NCOLS - 1 ) );
    mvwvline( mainwin, 1, ( MAP_NCOLS - 1 ), '|', ( MAP_NLINES - 1 ) );
 
-   mvwprintw( mainwin, 1, (MAP_NCOLS), "%3d,%3d", Y, X );
+   mvwprintw( mainwin, 22, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
 
    wrefresh( mainwin );
 
