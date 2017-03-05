@@ -11,7 +11,7 @@ int IsAreaClear( int centerY, int centerX )
    {
       for ( X = ( centerX - 1 ) ; X <= ( centerX + 1 ) ; X++ )
       {
-         if ( map_get_item( Y, X ) != ' ' ) return 0;
+         if ( map_get_item( Y, X ) != SPACE_ICON ) return 0;
       }
    }
 
@@ -34,7 +34,7 @@ int ObstacleCreate( void )
    {
       for ( X = 0 ; X < SizeX ; X++ )
       {
-         map[ Y + LocY ][ X + LocX ] = '^';
+         map[ Y + LocY ][ X + LocX ] = MOUNTAIN_ICON;
       }
    }
 
@@ -52,15 +52,15 @@ void MapInit( void )
       {
          if ( Y == 0 || X == 0 )
          {
-            map[ Y ][ X ] = '+';
+            map[ Y ][ X ] = WALL_ICON;
          }
          else if ( ( Y == ( Y_MAP_MAX - 1 ) ) || ( X == ( X_MAP_MAX - 1 ) ) )
          {
-            map[ Y ][ X ] = '+';
+            map[ Y ][ X ] = WALL_ICON;
          }
          else
          {
-            map[ Y ][ X ] = ' ';
+            map[ Y ][ X ] = SPACE_ICON;
          }
       }
    }
@@ -78,11 +78,11 @@ char vp_map( int y, int x )
 {
    if ( ( y < 0 ) || ( x < 0 ) )
    {
-      return '~';
+      return ABYSS_ICON;
    }
    else if ( ( y >= Y_MAP_MAX ) || ( x >= X_MAP_MAX ) )
    {
-      return '~';
+      return ABYSS_ICON;
    }
    else
    {
@@ -122,7 +122,7 @@ char map_get_item( int Y, int X )
 void map_move_item( int Y, int X, int dy, int dx )
 {
    map[ Y+dy ][ X+dx ] = map[ Y ][ X ];
-   map[ Y ][ X ] = ' ';
+   map[ Y ][ X ] = SPACE_ICON;
 
    return;
 }

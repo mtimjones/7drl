@@ -34,6 +34,16 @@
 // Max number of window messages
 #define MAX_MESSAGES   ( NLINES - MAP_NLINES - 1 )
 
+// Items
+#define WALL_ICON         '+'
+#define MOUNTAIN_ICON     '^'
+#define PLAYER_ICON       '@'
+#define PROTECTOR_ICON    'P'
+#define ARTIFACT_ICON     '*'
+#define ANIMAL_ICON       'a'
+#define SPACE_ICON        ' '
+#define ABYSS_ICON        '~'
+
 // Function prototypes
 void win_map_viewport( int Y, int X );
 void init_messages( void );

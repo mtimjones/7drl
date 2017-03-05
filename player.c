@@ -28,8 +28,11 @@ void PlayerInit( void )
    const int Xlimit = 60;
 
    // Init Player Stats
+   player.Level = 1;
+   player.XP = 0;
    player.Health = 20;
    player.ArtifactsHeld = 0;
+   player.Strength = 1;
 
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
@@ -39,7 +42,7 @@ void PlayerInit( void )
       player.LocationX = middleX + getRand( Xlimit );
    } while ( !IsAreaClear( player.LocationY, player.LocationX ) );
 
-   map_place_item( player.LocationY, player.LocationX, '@' );
+   map_place_item( player.LocationY, player.LocationX, PLAYER_ICON );
 
    return;
 }

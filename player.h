@@ -5,11 +5,13 @@
 
 typedef struct Player_type
 {
-   int LocationY;
-   int LocationX;
+   int Level;
+   int XP;
    double Health;
    int ArtifactsHeld;
-   int Stength;
+   int Strength;
+   int LocationY;
+   int LocationX;
 
 } Player_type;
 
