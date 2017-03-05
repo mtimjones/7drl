@@ -15,6 +15,9 @@ void SystemMovementFunction( )
    {
       if ( ( world.mask[ entity ] & mask ) == mask )
       {
+         if (DistanceToPlayer( world.location[ entity ].Y, 
+                               world.location[ entity ].X ) > 50 ) continue;
+
          // If state matches speed, time to move.
          if ( ++world.movement[ entity ].State >= world.movement[ entity ].Speed )
          {

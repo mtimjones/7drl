@@ -71,4 +71,6 @@ void InitEntities( void );
 
 void SystemMovementFunction( void );
 
+int DistanceToPlayer( int y1, int x1 );
+
 #endif // __7DRLTYPES_H
