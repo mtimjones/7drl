@@ -20,11 +20,13 @@ This repo contains the source code for a Seven Day Rogue Like entry.
 
 - [ ]  XP System, XP to next level is 110% of previous level.
 
-- [ ]  Update the UI to permit stats.
+- [x]  Update the UI to permit stats.
 
 - [ ]  Add Animals (health NPCs) into the world (random movement, vary speed).
 
-- [ ]  Add Protectors.
+- [ ]  Add Protectors, with pathfinding to attack the player.
+
+- [ ]  Add a dynamic legend which emits a description for the items on the screen. (Stretch)
 
 - [ ]  Add the secret door to escape.
 
