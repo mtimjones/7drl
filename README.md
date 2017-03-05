@@ -14,7 +14,7 @@ This repo contains the source code for a Seven Day Rogue Like entry.
 
 - [x]  Update the UI to permit messages.
 
-- [ ]  Add a CES (Component Entity System) framework for entities in the world.
+- [ ]  Add a CES (Component Entity System) framework for entities in the world (not player).
 
 - [ ]  Update the UI to permit stats.
 

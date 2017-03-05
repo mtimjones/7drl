@@ -40,6 +40,7 @@ void get_input( void )
       else
       {
          // @TODO: We're either hitting a wall, mountain, or attacking.
+         PlayerAttack( dy, dx );
       }
    }
 

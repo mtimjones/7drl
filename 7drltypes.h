@@ -47,8 +47,10 @@ unsigned long long getTimestamp( void );
 void add_message( char *message );
 char *get_message( int pos );
 int IsAreaClear( int centerY, int centerX );
+
 void PlayerInit( void );
 void GetPlayerLocation( int *Y, int *X );
 void SetPlayerLocation( int Y, int X );
+void PlayerAttack( int dy, int dx );
 
 #endif // __7DRLTYPES_H
