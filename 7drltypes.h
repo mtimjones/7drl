@@ -25,8 +25,8 @@
 #define getRand( x )    ( int ) ( ( x ) * getSRand( ) )
 
 // Size of the physical map
-#define X_MAP_MAX    1000
-#define Y_MAP_MAX    500
+#define X_MAP_MAX    800
+#define Y_MAP_MAX    400
 
 // 50Hz Game Loop (50FPS)
 #define MS_PER_FRAME  20

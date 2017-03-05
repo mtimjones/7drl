@@ -52,15 +52,15 @@ void EmitPlayerStats( void )
 {
    extern WINDOW *mainwin;
 
-   mvwprintw( mainwin, 1, (MAP_NCOLS)+1, "The Forest" );
+   mvwprintw( mainwin,  1, (MAP_NCOLS)+1, "The Forest" );
 
-   mvwprintw( mainwin, 3, (MAP_NCOLS)+1, "Player Stats" );
-   mvwprintw( mainwin, 4, (MAP_NCOLS)+1, " Level:        %2d", player.Level );
-   mvwprintw( mainwin, 5, (MAP_NCOLS)+1, " XP:          %3d", player.XP );
-   mvwprintw( mainwin, 6, (MAP_NCOLS)+1, " XP2NextLvl:  %3d", player.XPToNextLevel );
+   mvwprintw( mainwin,  3, (MAP_NCOLS)+1, "Player Stats" );
+   mvwprintw( mainwin,  4, (MAP_NCOLS)+1, " Level:        %2d", player.Level );
+   mvwprintw( mainwin,  5, (MAP_NCOLS)+1, " XP:          %3d", player.XP );
+   mvwprintw( mainwin,  6, (MAP_NCOLS)+1, " XPtoNextLvl: %3d", player.XPToNextLevel );
 
-   mvwprintw( mainwin, 8, (MAP_NCOLS)+1, " Health:      %3d", player.Health );
-   mvwprintw( mainwin, 9, (MAP_NCOLS)+1, " Strength:     %2d", player.Strength );
+   mvwprintw( mainwin,  8, (MAP_NCOLS)+1, " Health:      %3d", player.Health );
+   mvwprintw( mainwin,  9, (MAP_NCOLS)+1, " Strength:     %2d", player.Strength );
 
    mvwprintw( mainwin, 11, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
 

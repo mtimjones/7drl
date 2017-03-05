@@ -37,9 +37,10 @@ unsigned int createAnimal( )
    if ( entity < MAX_ENTITIES )
    {
 
-      world.mask[ entity ] = COMPONENT_LOCATION   |
-                             COMPONENT_HEALTH     |
-                             COMPONENT_MOBILE;
+      world.mask[ entity ] = COMPONENT_LOCATION  |
+                             COMPONENT_HEALTH    |
+                             COMPONENT_XPVALUE   |
+                             COMPONENT_MOVEMENT;
 
       // Place the animal in the environment.
       do {
@@ -50,6 +51,9 @@ unsigned int createAnimal( )
       world.location[ entity ].Y = y;
       world.location[ entity ].X = x;
 
+      world.movement[ entity ].Speed = 3 + getRand( 2 );
+      world.movement[ entity ].State = 3;
+
       world.health[ entity ].Health = 5;
       world.XPValue[ entity].XP = 5;
 
@@ -59,6 +63,43 @@ unsigned int createAnimal( )
    return entity;
 }
 
+
+unsigned int createProtector( )
+{
+   int entity;
+   int y, x;
+
+   entity = createEntity( );
+
+   if ( entity < MAX_ENTITIES )
+   {
+
+      world.mask[ entity ] = COMPONENT_LOCATION  |
+                             COMPONENT_HEALTH    |
+                             COMPONENT_ATTACK    |
+                             COMPONENT_XPVALUE   |
+                             COMPONENT_MOVEMENT;
+
+      // Place the animal in the environment.
+      do {
+         y = getRand( Y_MAP_MAX );
+         x = getRand( X_MAP_MAX );
+      } while ( !IsAreaClear( y, x ) );
+
+      world.location[ entity ].Y = y;
+      world.location[ entity ].X = x;
+
+      world.movement[ entity ].Speed = 1 + getRand( 2 );
+      world.movement[ entity ].State = 1;
+
+      world.health[ entity ].Health = 20;
+      world.XPValue[ entity].XP = 20;
+
+      map_place_item( y, x, PROTECTOR_ICON );
+   }
+
+   return entity;
+}
 
 void InitEntities( )
 {
@@ -71,12 +112,16 @@ void InitEntities( )
    }
 
    // Create some number of animals.
-   for ( entity = 0 ; entity < 30 ; entity++ )
+   for ( entity = 0 ; entity < NUMBER_OF_ANIMALS ; entity++ )
    {
       createAnimal( );
    }
 
    // Create some number of protectors.
+   for ( entity = 0 ; entity < NUMBER_OF_PROTECTORS ; entity++ )
+   {
+      createProtector( );
+   }
 
    return;
 }
