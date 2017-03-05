@@ -36,7 +36,7 @@ This repo contains the source code for a Seven Day Rogue Like entry called "The 
 
 - [ ]  Add A* pathfinding.
 
-- [ ]  In the stats section, show the closest protector. (Stretch)
+- [ ]  In the stats section, show the direction of the closest animal and protector. (Stretch)
 
 - [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
