@@ -84,7 +84,7 @@ int main( int argc, char *argv[] )
    add_message( "  You're trapped in the forest, but you can escape with enough artifacts.\0" );
    add_message( "  Artifacts are carried by Protectors, which must be killed to attain them.\0" );  
    add_message( "  Once you have 10 artifacts, find the door in the South to escape.\0" );
-   add_message( "  Move with hjkl.\0" );
+   add_message( "  Move with wasd.\0" );
 
    win_update( );
 

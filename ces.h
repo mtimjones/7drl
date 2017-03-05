@@ -50,6 +50,7 @@ typedef enum
 
 #define NUMBER_OF_ANIMALS      40
 #define NUMBER_OF_PROTECTORS   20
+#define NUMBER_OF_SHOTS        10
 
 #define MAX_ENTITIES   ( NUMBER_OF_ANIMALS + NUMBER_OF_PROTECTORS )
 

@@ -33,7 +33,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add the secret door to escape.
 
-- [ ]  Add a function for distance between objects.
+- [x]  Add a function for distance to player.
 
 - [ ]  Two types of enemies in the environment.  Animals, that can restore health and Protectors that carry artifacts (harder to kill).
 

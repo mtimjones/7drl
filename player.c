@@ -89,19 +89,19 @@ void PlayerMove( void )
 
    if ( c != ERR )
    {
-      if ( (char)c == 'k' )
+      if ( (char)c == 'w' )
       {
          dy=-1;
       }
-      else if ( (char)c == 'j' )
+      else if ( (char)c == 's' )
       {
          dy=1;
       }
-      else if ( (char)c == 'h' )
+      else if ( (char)c == 'a' )
       {
          dx=-1;
       }
-      else if ( (char)c == 'l' )
+      else if ( (char)c == 'd' )
       {
          dx=1;
       }
