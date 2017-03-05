@@ -52,6 +52,7 @@ The only dependency is ncurses.
 
 The source includes a standard Makefile, so make should suffice:
 
-```make
+```
+make
 ```
 
