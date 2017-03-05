@@ -1,21 +1,22 @@
 // Player functions file.
 
 #include "7drltypes.h"
+#include "player.h"
 
-static int Player_Y, Player_X;
+static Player_type player;
 
 void GetPlayerLocation( int *Y, int *X )
 {
-   *Y = Player_Y;
-   *X = Player_X;
+   *Y = player.LocationY;
+   *X = player.LocationX;
 
    return;
 }
 
 void SetPlayerLocation( int Y, int X )
 {
-   Player_Y = Y;
-   Player_X = X;
+   player.LocationY = Y;
+   player.LocationX = X;
 
    return;
 }
@@ -26,15 +27,19 @@ void PlayerInit( void )
    const int Ylimit = 40;
    const int Xlimit = 60;
 
+   // Init Player Stats
+   player.Health = 20;
+   player.ArtifactsHeld = 0;
+
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
 
    do {
-      Player_Y = middleY + getRand( Ylimit );
-      Player_X = middleX + getRand( Xlimit );
-   } while ( !IsAreaClear( Player_Y, Player_X ) );
+      player.LocationY = middleY + getRand( Ylimit );
+      player.LocationX = middleX + getRand( Xlimit );
+   } while ( !IsAreaClear( player.LocationY, player.LocationX ) );
 
-   map_place_item( Player_Y, Player_X, '@' );
+   map_place_item( player.LocationY, player.LocationX, '@' );
 
    return;
 }
