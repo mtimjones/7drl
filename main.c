@@ -25,12 +25,16 @@ void win_startup( void )
 }
 
 
-void win_update( int Y, int X )
+void win_update( void )
 {
+   int Y, X;
+
    wborder( mainwin, 0, 0, 0, 0, 0, 0, 0, 0 );
 
    mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( NCOLS - 2 ) );
    mvwvline( mainwin, 1, ( MAP_NCOLS - 1 ), '|', ( MAP_NLINES - 2 ) );
+
+   GetPlayerLocation( &Y, &X );
 
    win_map_viewport( Y, X );
 
@@ -60,16 +64,15 @@ void win_shutdown( void )
 
 int main( int argc, char *argv[] )
 {
-   int Y, X;
-
    srand( time( NULL ) );
 
    init_messages( );
 
-   Y = getRand( Y_MAP_MAX );
-   X = getRand( X_MAP_MAX );
+   MapInit( );
 
-   MapInit( Y, X );
+   PlayerInit( );
+
+   // Init CES
 
    win_startup( );
 
@@ -80,18 +83,18 @@ int main( int argc, char *argv[] )
    add_message( "  Once you have 10 artifacts, find the door in the South to escape.\0" );
    add_message( "  Move with hjkl.\0" );
 
-   win_update( Y, X );
+   win_update( );
 
    while ( 1 )
    {
       unsigned long long start = getTimestamp( );
 
-      get_input( &Y, &X );
+      get_input( );
 
       // Entity system here...
 
       // Update the window
-      win_update( Y, X );
+      win_update( );
 
       while ( getTimestamp( ) < start + MS_PER_FRAME );
 

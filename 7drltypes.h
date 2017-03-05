@@ -38,12 +38,17 @@
 void win_map_viewport( int Y, int X );
 void init_messages( void );
 char *get_message( int pos );
-void MapInit( int Py, int Px );
-void get_input( int *Y, int *X );
+void MapInit( void );
+void get_input( void );
 char map_get_item( int Y, int X );
 void map_move_item( int Y, int X, int dy, int dx );
+void map_place_item( int Y, int X, char item );
 unsigned long long getTimestamp( void );
 void add_message( char *message );
 char *get_message( int pos );
+int IsAreaClear( int centerY, int centerX );
+void PlayerInit( void );
+void GetPlayerLocation( int *Y, int *X );
+void SetPlayerLocation( int Y, int X );
 
 #endif // __7DRLTYPES_H
