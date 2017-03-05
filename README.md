@@ -1,6 +1,6 @@
 # 7drl
 
-This repo contains the source code for a Seven Day RogueLike entry.
+This repo contains the source code for a Seven Day Rogue Like entry.
 
 - [x]  Add map generation. (Reused)
 
@@ -14,27 +14,23 @@ This repo contains the source code for a Seven Day RogueLike entry.
 
 - [x]  Update the UI to permit messages.
 
+- [ ]  Add a CES (Component Entity System) framework for entities in the world.
+
 - [ ]  Update the UI to permit stats.
 
-- [ ]  Add a CES framework for entities in the world.
+- [ ]  Add Animals (health NPCs) into the world (random movement, vary speed).
 
-- [ ]  Add enemies into the world (static at first).
+- [ ]  Add Protectors.
 
-- [ ]  Add non-violent NPCs (animals?) into the world (random movement, vary speed).
+- [ ]  Add the secret door to escape.
 
 - [ ]  Add a function for distance between objects.
 
-- [ ]  Two types of enemies in the environment.  Animals, that can restore health (but also attack for small damage) and Protectors that carry artifacts (harder to kill).
+- [ ]  Two types of enemies in the environment.  Animals, that can restore health and Protectors that carry artifacts (harder to kill).
 
 - [ ]  Add A* pathfinding.
 
-- [ ]  Enemies carry artifacts, pick a random enemy and show their distance (hint).
+- [ ]  In the stats section, show the closest protector. (Stretch)
 
-- [ ]  Add escape path (enabled only once # of reward objects captured).
-
-- [ ]  Add guard enemies which guard treasure (do not move until within range of player).
-
-- [ ]  Add hunter enemies who move around the map.  If they sight the player, they attack.
-
-- [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types.
+- [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
