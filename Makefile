@@ -7,8 +7,8 @@ OBJS = main.o map.o messages.o time.o player.o ces.o
 %.o: %.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-test: $(OBJS)
+7drl: $(OBJS)
 	$(CC) -g -o $@ $^ $(CFLAGS) -lncurses
 
 clean:
-	rm -f test *.o
+	rm -f 7drl *.o

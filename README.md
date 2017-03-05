@@ -48,11 +48,12 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 The only dependency is ncurses.
 
-# Building
+# Building and Running
 
 The source includes a standard Makefile, so make should suffice:
 
 ```
 make
+./7drl
 ```
 
