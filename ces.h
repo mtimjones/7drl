@@ -43,6 +43,8 @@ typedef enum
    COMPONENT_ATTACK     = 1 << 3,
    COMPONENT_MOVEMENT   = 1 << 4,
    COMPONENT_XPVALUE    = 1 << 5,
+   COMPONENT_ANIMAL     = 1 << 6,
+   COMPONENT_PROTECTOR  = 1 << 7,
 
 } Component;
 

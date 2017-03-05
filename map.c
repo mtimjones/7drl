@@ -34,7 +34,7 @@ int ObstacleCreate( void )
    {
       for ( X = 0 ; X < SizeX ; X++ )
       {
-         map[ Y + LocY ][ X + LocX ] = MOUNTAIN_ICON;
+         map[ Y + LocY ][ X + LocX ] = TREE_ICON;
       }
    }
 

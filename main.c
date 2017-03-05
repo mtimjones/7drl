@@ -38,14 +38,14 @@ void win_update( void )
 
    win_map_viewport( Y, X );
 
-   mvwprintw( mainwin, 20, (MAP_NCOLS)+1, "Time     %7d", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
-   mvwprintw( mainwin, 21, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
+   mvwprintw( mainwin, 30, (MAP_NCOLS)+1, "Time     %7d", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
+   mvwprintw( mainwin, 31, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
 
    EmitPlayerStats( );
 
    for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
    {
-      mvwprintw( mainwin, ( 23 + i ), 1, "%s", get_message( i ) );
+      mvwprintw( mainwin, ( MAP_NLINES + i ), 1, "%s", get_message( i ) );
    }
 
    wrefresh( mainwin );
@@ -94,7 +94,8 @@ int main( int argc, char *argv[] )
 
       PlayerMove( );
 
-      // Entity system here...
+      // CES system calls here...
+      SystemMovementFunction( );
 
       // Update the window
       win_update( );

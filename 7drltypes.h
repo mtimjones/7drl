@@ -12,8 +12,10 @@
 #include <strings.h>
 #include <string.h>
 
+#include "ces.h"
+
 // Size of the map viewport
-#define MAP_NLINES      23
+#define MAP_NLINES      33
 #define MAP_NCOLS       69
 
 // Size of the UI
@@ -36,7 +38,7 @@
 
 // Items
 #define WALL_ICON         '+'
-#define MOUNTAIN_ICON     '^'
+#define TREE_ICON         '^'
 #define PLAYER_ICON       '@'
 #define PROTECTOR_ICON    'P'
 #define ARTIFACT_ICON     '*'
@@ -66,5 +68,7 @@ void PlayerMove( void );
 void EmitPlayerStats( void );
 
 void InitEntities( void );
+
+void SystemMovementFunction( void );
 
 #endif // __7DRLTYPES_H

@@ -1,7 +1,6 @@
 // ces.c -- Component Entity System implementation.
 
 #include "7drltypes.h"
-#include "ces.h"
 
 World world;
 
@@ -40,6 +39,7 @@ unsigned int createAnimal( )
       world.mask[ entity ] = COMPONENT_LOCATION  |
                              COMPONENT_HEALTH    |
                              COMPONENT_XPVALUE   |
+                             COMPONENT_ANIMAL    |
                              COMPONENT_MOVEMENT;
 
       // Place the animal in the environment.
@@ -51,8 +51,8 @@ unsigned int createAnimal( )
       world.location[ entity ].Y = y;
       world.location[ entity ].X = x;
 
-      world.movement[ entity ].Speed = 3 + getRand( 2 );
-      world.movement[ entity ].State = 3;
+      world.movement[ entity ].Speed = 10 + getRand( 8 );
+      world.movement[ entity ].State = 0;
 
       world.health[ entity ].Health = 5;
       world.XPValue[ entity].XP = 5;
@@ -78,6 +78,7 @@ unsigned int createProtector( )
                              COMPONENT_HEALTH    |
                              COMPONENT_ATTACK    |
                              COMPONENT_XPVALUE   |
+                             COMPONENT_PROTECTOR |
                              COMPONENT_MOVEMENT;
 
       // Place the animal in the environment.
@@ -89,8 +90,8 @@ unsigned int createProtector( )
       world.location[ entity ].Y = y;
       world.location[ entity ].X = x;
 
-      world.movement[ entity ].Speed = 1 + getRand( 2 );
-      world.movement[ entity ].State = 1;
+      world.movement[ entity ].Speed = 3 + getRand( 2 );
+      world.movement[ entity ].State = 0;
 
       world.health[ entity ].Health = 20;
       world.XPValue[ entity].XP = 20;
@@ -126,14 +127,4 @@ void InitEntities( )
    return;
 }
 
-
-void SystemAnimateProtectors( void )
-{
-
-}
-
-void SystemAnimateAnimals( void )
-{
-
-}
 

@@ -50,7 +50,8 @@ The only dependency is ncurses.
 
 # Building and Running
 
-The source includes a standard Makefile, so make should suffice:
+The source includes a standard Makefile, so make should suffice.  Your terminal window should be
+large enough to fit the game window, so expand it.
 
 ```
 make
