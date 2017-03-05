@@ -17,7 +17,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Update the UI to permit messages.
 
-- [ ]  Add a CES (Component Entity System) framework for entities in the world (not player).
+- [x]  Add a CES (Component Entity System) framework for entities in the world (not player).
 
 - [ ]  Add combat system, how attack works, defense, etc.
 
@@ -25,7 +25,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Update the UI to permit stats.
 
-- [ ]  Add Animals (health NPCs) into the world (random movement, vary speed).
+- [x]  Add Animals (health NPCs) into the world (random movement, vary speed).
 
 - [ ]  Add Protectors, with pathfinding to attack the player.
 
