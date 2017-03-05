@@ -2,6 +2,8 @@
 
 This repo contains the source code for a Seven Day Rogue Like entry called "The Forest."
 
+# Task List
+
 - [x]  Add map generation. (Reused)
 
 - [x]  Add ncurses-based viewport. (Reused)
@@ -41,4 +43,13 @@ This repo contains the source code for a Seven Day Rogue Like entry called "The 
 - [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
 
+# Dependencies
+
+The only dependency is ncurses.
+
+# Building
+
+The source includes a standard Makefile, so make should suffice:
+
+'''make
 
