@@ -29,8 +29,8 @@ void win_update( int Y, int X )
 {
    wborder( mainwin, 0, 0, 0, 0, 0, 0, 0, 0 );
 
-   mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( MAP_NCOLS - 1 ) );
-   mvwvline( mainwin, 1, ( MAP_NCOLS - 1 ), '|', ( MAP_NLINES - 1 ) );
+   mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( NCOLS - 2 ) );
+   mvwvline( mainwin, 1, ( MAP_NCOLS - 1 ), '|', ( MAP_NLINES - 2 ) );
 
    win_map_viewport( Y, X );
 
@@ -73,9 +73,12 @@ int main( int argc, char *argv[] )
 
    win_startup( );
 
-   add_message( "Welcome to NoNameYet.\0" );
-   add_message( "Find and kill enemies to capture artifacts and escape the forest.\0" );
-   add_message( "Move with standard hjkl.\0" );
+   // Emit some instructions.
+   add_message( "Welcome to The Forest.\0" );
+   add_message( "  You're trapped in the forest, but you can escape with enough artifacts.\0" );
+   add_message( "  Artifacts are carried by Protectors, which must be killed to attain them.\0" );  
+   add_message( "  Once you have 10 artifacts, find the door in the South to escape.\0" );
+   add_message( "  Move with hjkl.\0" );
 
    win_update( Y, X );
 
@@ -99,4 +102,5 @@ int main( int argc, char *argv[] )
 
    return 0;
 }
+
 

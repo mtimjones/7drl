@@ -33,6 +33,10 @@ void get_input( int *Y, int *X )
          map_move_item( *Y, *X, dy, dx );
          *Y+=dy; *X+=dx;
       }
+      else
+      {
+         // @TODO: We're either hitting a wall, mountain, or attacking.
+      }
    }
 
    return;

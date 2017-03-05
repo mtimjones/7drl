@@ -24,11 +24,9 @@ This repo contains the source code for a Seven Day RogueLike entry.
 
 - [ ]  Add a function for distance between objects.
 
-- [ ]  Health system (should it be time-based, or as a function of items in the environment).
+- [ ]  Two types of enemies in the environment.  Animals, that can restore health (but also attack for small damage) and Protectors that carry artifacts (harder to kill).
 
 - [ ]  Add A* pathfinding.
-
-- [ ]  Add reward objects.
 
 - [ ]  Enemies carry artifacts, pick a random enemy and show their distance (hint).
 
