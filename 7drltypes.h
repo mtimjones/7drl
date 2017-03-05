@@ -63,5 +63,8 @@ void GetPlayerLocation( int *Y, int *X );
 void SetPlayerLocation( int Y, int X );
 void PlayerAttack( int dy, int dx );
 void PlayerMove( void );
+void EmitPlayerStats( void );
+
+void InitEntities( void );
 
 #endif // __7DRLTYPES_H

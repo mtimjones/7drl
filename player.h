@@ -7,7 +7,8 @@ typedef struct Player_type
 {
    int Level;
    int XP;
-   double Health;
+   int XPToNextLevel;
+   int Health;
    int ArtifactsHeld;
    int Strength;
    int LocationY;

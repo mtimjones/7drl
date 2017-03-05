@@ -33,6 +33,7 @@ void PlayerInit( void )
    player.Health = 20;
    player.ArtifactsHeld = 0;
    player.Strength = 1;
+   player.XPToNextLevel = 20;
 
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
@@ -43,6 +44,25 @@ void PlayerInit( void )
    } while ( !IsAreaClear( player.LocationY, player.LocationX ) );
 
    map_place_item( player.LocationY, player.LocationX, PLAYER_ICON );
+
+   return;
+}
+
+void EmitPlayerStats( void )
+{
+   extern WINDOW *mainwin;
+
+   mvwprintw( mainwin, 1, (MAP_NCOLS)+1, "The Forest" );
+
+   mvwprintw( mainwin, 3, (MAP_NCOLS)+1, "Player Stats" );
+   mvwprintw( mainwin, 4, (MAP_NCOLS)+1, " Level:        %2d", player.Level );
+   mvwprintw( mainwin, 5, (MAP_NCOLS)+1, " XP:          %3d", player.XP );
+   mvwprintw( mainwin, 6, (MAP_NCOLS)+1, " XP2NextLvl:  %3d", player.XPToNextLevel );
+
+   mvwprintw( mainwin, 8, (MAP_NCOLS)+1, " Health:      %3d", player.Health );
+   mvwprintw( mainwin, 9, (MAP_NCOLS)+1, " Strength:     %2d", player.Strength );
+
+   mvwprintw( mainwin, 11, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
 
    return;
 }

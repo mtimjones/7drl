@@ -16,6 +16,10 @@ This repo contains the source code for a Seven Day Rogue Like entry.
 
 - [ ]  Add a CES (Component Entity System) framework for entities in the world (not player).
 
+- [ ]  Add combat system, how attack works, defense, etc.
+
+- [ ]  XP System, XP to next level is 110% of previous level.
+
 - [ ]  Update the UI to permit stats.
 
 - [ ]  Add Animals (health NPCs) into the world (random movement, vary speed).
@@ -33,4 +37,6 @@ This repo contains the source code for a Seven Day Rogue Like entry.
 - [ ]  In the stats section, show the closest protector. (Stretch)
 
 - [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
+
+
 

@@ -38,8 +38,10 @@ void win_update( void )
 
    win_map_viewport( Y, X );
 
-   mvwprintw( mainwin, 20, (MAP_NCOLS)+1, "Time     %6d", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
+   mvwprintw( mainwin, 20, (MAP_NCOLS)+1, "Time     %7d", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
    mvwprintw( mainwin, 21, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
+
+   EmitPlayerStats( );
 
    for ( int i = 0 ; i < MAX_MESSAGES ; i++ )
    {
@@ -73,6 +75,7 @@ int main( int argc, char *argv[] )
    PlayerInit( );
 
    // Init CES
+   InitEntities( );
 
    win_startup( );
 

@@ -14,7 +14,7 @@ typedef struct ComponentHealth
 {
    int Health;
 
-} ComponentHealth
+} ComponentHealth;
 
 typedef struct ComponentAttack
 {
@@ -22,11 +22,11 @@ typedef struct ComponentAttack
 
 } ComponentAttack;
 
-typedef struct ComponentAppearance
+typedef struct ComponentXPValue
 {
-   char Appearance;
+   int XP;
 
-} ComponentAppearance;
+} ComponentXPValue;
 
 typedef enum
 {
@@ -34,12 +34,13 @@ typedef enum
    COMPONENT_LOCATION   = 1 << 1,
    COMPONENT_HEALTH     = 1 << 2,
    COMPONENT_ATTACK     = 1 << 3,
-   COMPONENT_APPEARANCE = 1 << 4,
+   COMPONENT_MOBILE     = 1 << 4,
+   COMPONENT_XPVALUE    = 1 << 5,
 
 } Component;
 
 
-#define MAX_ENTITIES   30
+#define MAX_ENTITIES   50
 
 typedef struct World
 {
@@ -48,9 +49,11 @@ typedef struct World
    ComponentLocation     location[ MAX_ENTITIES ];
    ComponentHealth       health[ MAX_ENTITIES ];
    ComponentAttack       attack[ MAX_ENTITIES ];
-   ComponentAppearance   appearance[ MAX_ENTITIES ];
+   ComponentXPValue      XPValue[ MAX_ENTITIES ];
 
 } World;
+
+void InitEntities( );
 
 #endif // __COMPONENT_H
 
