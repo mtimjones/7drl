@@ -1,6 +1,7 @@
-# 7drl
+# 7drl ("The Forest")
 
-This repo contains the source code for a Seven Day Rogue Like entry called "The Forest."
+This repo contains the source code for a Seven Day Rogue Like entry called "The Forest."  This
+is a quick attempt at a roguelike in a short time (not sure if it will be fun or not).
 
 # Task List
 
@@ -51,5 +52,6 @@ The only dependency is ncurses.
 
 The source includes a standard Makefile, so make should suffice:
 
-``` make
+```make
+```
 
