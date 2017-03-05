@@ -45,6 +45,7 @@
 #define ANIMAL_ICON       'a'
 #define SPACE_ICON        ' '
 #define ABYSS_ICON        '~'
+#define SHOT_ICON         '.'
 
 // Function prototypes
 void win_map_viewport( int Y, int X );
@@ -70,6 +71,7 @@ void EmitPlayerStats( void );
 void InitEntities( void );
 int  getEntityAt( int Y, int X );
 void destroyEntity( unsigned int entity );
+unsigned int createAnimal( void );
 
 void SystemMovementFunction( void );
 

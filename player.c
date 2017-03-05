@@ -111,6 +111,7 @@ void PlayerAttack( int Y, int X )
             PlayerAddXP( world.XPValue[ entity ].XP );
             destroyEntity( entity );
             map_place_item( Y, X, SPACE_ICON );
+            createAnimal( );
          }
          break;
 

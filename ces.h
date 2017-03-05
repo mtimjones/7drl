@@ -37,20 +37,21 @@ typedef struct ComponentXPValue
 
 typedef enum
 {
-   COMPONENT_NONE       = 0,
-   COMPONENT_LOCATION   = 1 << 1,
-   COMPONENT_HEALTH     = 1 << 2,
-   COMPONENT_ATTACK     = 1 << 3,
-   COMPONENT_MOVEMENT   = 1 << 4,
-   COMPONENT_XPVALUE    = 1 << 5,
-   COMPONENT_ANIMAL     = 1 << 6,
-   COMPONENT_PROTECTOR  = 1 << 7,
+   COMPONENT_NONE        = 0,
+   COMPONENT_LOCATION    = 1 << 1,
+   COMPONENT_HEALTH      = 1 << 2,
+   COMPONENT_ATTACK      = 1 << 3,
+   COMPONENT_MOVEMENT    = 1 << 4,
+   COMPONENT_XPVALUE     = 1 << 5,
+   COMPONENT_ANIMAL      = 1 << 6,
+   COMPONENT_PROTECTOR   = 1 << 7,
+   COMPONENT_PROJECTILE  = 1 << 8,
 
 } Component;
 
 #define NUMBER_OF_ANIMALS      40
 #define NUMBER_OF_PROTECTORS   20
-#define NUMBER_OF_SHOTS        10
+#define NUMBER_OF_PROJECTILES   5
 
 #define MAX_ENTITIES   ( NUMBER_OF_ANIMALS + NUMBER_OF_PROTECTORS )
 
