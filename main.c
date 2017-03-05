@@ -89,7 +89,7 @@ int main( int argc, char *argv[] )
    {
       unsigned long long start = getTimestamp( );
 
-      get_input( );
+      PlayerMove( );
 
       // Entity system here...
 

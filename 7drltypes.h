@@ -52,5 +52,6 @@ void PlayerInit( void );
 void GetPlayerLocation( int *Y, int *X );
 void SetPlayerLocation( int Y, int X );
 void PlayerAttack( int dy, int dx );
+void PlayerMove( void );
 
 #endif // __7DRLTYPES_H
