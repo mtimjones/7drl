@@ -58,6 +58,8 @@ typedef struct World
 {
    int mask[ MAX_ENTITIES ];
 
+   int id[ MAX_ENTITIES ];
+
    ComponentLocation     location [ MAX_ENTITIES ];
    ComponentHealth       health   [ MAX_ENTITIES ];
    ComponentAttack       attack   [ MAX_ENTITIES ];

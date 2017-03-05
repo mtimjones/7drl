@@ -43,6 +43,8 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
+- [ ]  Add towers that reduce health within a distance, or shoot at the player.  Perhaps these could be at the end near the exit.
+
 
 # Dependencies
 

@@ -30,10 +30,11 @@ void PlayerInit( void )
    // Init Player Stats
    player.Level = 1;
    player.XP = 0;
+   player.XPToNextLevel = 20;
    player.Health = 20;
+   player.MaxHealth = player.Health;
    player.ArtifactsHeld = 0;
    player.Strength = 1;
-   player.XPToNextLevel = 20;
 
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
@@ -67,10 +68,55 @@ void EmitPlayerStats( void )
    return;
 }
 
-void PlayerAttack( int dy, int dx )
+void PlayerAddXP( int XP )
 {
+   player.XP += XP;
 
-   // TODO.
+   if ( player.XP >= player.XPToNextLevel )
+   {
+      add_message( "Your level has increased.\0" );
+      player.Level++;
+      player.XPToNextLevel += ( player.XPToNextLevel * 1.1 ); // ????
+      player.MaxHealth *= 1.1;
+   }
+
+   // @TODO: Provide the player with a small health bonus.
+
+   return;
+}
+
+
+void PlayerAttack( int Y, int X )
+{
+   char item;
+   int  entity;
+
+   extern World world;
+
+   item = map_get_item( Y, X );
+
+   switch( item )
+   {
+      case ANIMAL_ICON:
+         // Get the entity at this location.
+         entity = getEntityAt( Y, X );
+
+         // Attack
+         world.health[ entity ].Health -= player.Strength;
+
+         // Did we kill it?
+         if ( world.health[ entity ].Health <= 0 )
+         {
+            add_message( "You've killed the animal.\0" );
+            PlayerAddXP( world.XPValue[ entity ].XP );
+            destroyEntity( entity );
+            map_place_item( Y, X, SPACE_ICON );
+         }
+         break;
+
+      default:
+         break;
+   }
 
    return;
 }
@@ -80,6 +126,7 @@ void PlayerMove( void )
    int c;
    int Y, X;
    int dy=0, dx=0;
+   int moved = 0;
 
    extern WINDOW *mainwin;
 
@@ -92,30 +139,37 @@ void PlayerMove( void )
       if ( (char)c == 'w' )
       {
          dy=-1;
+         moved = 1;
       }
       else if ( (char)c == 's' )
       {
          dy=1;
+         moved = 1;
       }
       else if ( (char)c == 'a' )
       {
          dx=-1;
+         moved = 1;
       }
       else if ( (char)c == 'd' )
       {
          dx=1;
+         moved = 1;
       }
 
-      if ( map_get_item( Y+dy, X+dx )  == ' ' )
+      if ( moved )
       {
-         map_move_item( Y, X, dy, dx );
-         Y+=dy; X+=dx;
-         SetPlayerLocation( Y, X );
-      }
-      else
-      {
-         // @TODO: We're either hitting a wall, mountain, or attacking.
-         PlayerAttack( dy, dx );
+         if ( map_get_item( Y+dy, X+dx )  == SPACE_ICON )
+         {
+            map_move_item( Y, X, dy, dx );
+            Y+=dy; X+=dx;
+            SetPlayerLocation( Y, X );
+         }
+         else
+         {
+            // @TODO: We're either hitting a wall, mountain, or attacking.
+            PlayerAttack( Y+dy, X+dx );
+         }
       }
    }
 

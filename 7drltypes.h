@@ -68,6 +68,8 @@ void PlayerMove( void );
 void EmitPlayerStats( void );
 
 void InitEntities( void );
+int  getEntityAt( int Y, int X );
+void destroyEntity( unsigned int entity );
 
 void SystemMovementFunction( void );
 

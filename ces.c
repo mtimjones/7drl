@@ -4,14 +4,30 @@
 
 World world;
 
-unsigned int createEntity( )
+int getEntityAt( int Y, int X )
 {
+   unsigned int entity;
+
+   for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
+   {
+      if (world.location[ entity ].X == X && world.location[ entity ].Y == Y )
+      {
+         return entity;
+      }
+   }
+
+   return entity;
+}
+
+unsigned int createEntity( )
+{ 
    unsigned int entity;
 
    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
    {
       if ( world.mask[ entity ] == COMPONENT_NONE )
       {
+         world.id[ entity ] = entity;
          return entity;
       }
    }

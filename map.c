@@ -3,6 +3,7 @@
 
 static char map[ Y_MAP_MAX ][ X_MAP_MAX ];
 
+
 int IsAreaClear( int centerY, int centerX )
 {
    int Y, X;
