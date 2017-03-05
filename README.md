@@ -1,6 +1,6 @@
 # 7drl
 
-This repo contains the source code for a Seven Day Rogue Like entry.
+This repo contains the source code for a Seven Day Rogue Like entry called "The Forest."
 
 - [x]  Add map generation. (Reused)
 
