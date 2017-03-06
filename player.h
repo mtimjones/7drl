@@ -14,6 +14,8 @@ typedef struct Player_type
    int LocationY;
    int LocationX;
    int SlingRange;
+   int ShotsAvailable;
+   int ShotsActive;
 
 } Player_type;
 

@@ -46,7 +46,8 @@
 #define SPACE_ICON        ' '
 #define ABYSS_ICON        '~'
 #define SHOT_ICON         '.'
-#define SLING_ICON        '?'
+#define SLING_ICON        '('
+#define PROJECTILE_ICON   '*'
 
 #define SLING_BONUS_ITEMS     20
 
@@ -79,5 +80,7 @@ unsigned int createAnimal( void );
 void SystemMovementFunction( void );
 
 int DistanceToPlayer( int y1, int x1 );
+
+unsigned int createProjectile( int Y, int X, int targetY, int targetX );
 
 #endif // __7DRLTYPES_H

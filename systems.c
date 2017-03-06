@@ -5,12 +5,22 @@
 void SystemMovementFunction( )
 {
    unsigned int entity;
-   unsigned int mask = COMPONENT_MOVEMENT | COMPONENT_ANIMAL;
+   unsigned int mask;
    int dy, dx;
 
    extern World world;
 
-   // Animate the animals first.
+   // Animate the projectiles.
+   mask = COMPONENT_PROJECTILE;
+   for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
+   {
+      if ( ( world.mask[ entity ] & mask ) == mask )
+      {
+      }
+   }
+
+   // Animate the animals.
+   mask = COMPONENT_MOVEMENT | COMPONENT_ANIMAL;
    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
    {
       if ( ( world.mask[ entity ] & mask ) == mask )
@@ -41,6 +51,8 @@ void SystemMovementFunction( )
       }
 
    }
+
+   // Animate the protectors.
 
    return;
 }

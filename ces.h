@@ -5,8 +5,8 @@
 
 typedef struct ComponentLocation
 {
-   int Y;
-   int X;
+   double Y;
+   double X;
 
 } ComponentLocation;
 
@@ -35,6 +35,13 @@ typedef struct ComponentXPValue
 
 } ComponentXPValue;
 
+typedef struct ComponentProjectile
+{
+   int targetY;
+   int targetX;
+
+} ComponentProjectile;
+
 typedef enum
 {
    COMPONENT_NONE        = 0,
@@ -61,11 +68,12 @@ typedef struct World
 
    int id[ MAX_ENTITIES ];
 
-   ComponentLocation     location [ MAX_ENTITIES ];
-   ComponentHealth       health   [ MAX_ENTITIES ];
-   ComponentAttack       attack   [ MAX_ENTITIES ];
-   ComponentMovement     movement [ MAX_ENTITIES ];
-   ComponentXPValue      XPValue  [ MAX_ENTITIES ];
+   ComponentLocation     location   [ MAX_ENTITIES ];
+   ComponentHealth       health     [ MAX_ENTITIES ];
+   ComponentAttack       attack     [ MAX_ENTITIES ];
+   ComponentMovement     movement   [ MAX_ENTITIES ];
+   ComponentXPValue      XPValue    [ MAX_ENTITIES ];
+   ComponentProjectile   projectile [ MAX_ENTITIES ];
 
 } World;
 

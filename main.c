@@ -4,10 +4,11 @@ WINDOW *mainwin;
 
 unsigned int GameTime = 0;
 
+// Offset to center game pane in the available window.
+int offsetx, offsety;
+
 void win_startup( void )
 {
-   int offsetx, offsety;
-
    initscr( );
    cbreak( );
    noecho( );
@@ -20,6 +21,8 @@ void win_startup( void )
    mainwin = newwin( NLINES, NCOLS, offsety, offsetx );
    nodelay( mainwin, TRUE );
    keypad( mainwin, TRUE );
+
+   mousemask( BUTTON1_CLICKED, NULL );
 
    return;
 }
@@ -59,6 +62,8 @@ void win_shutdown( void )
    delwin( mainwin );
 
    endwin( );
+
+   mousemask( 0, NULL );
 
    return;
 }

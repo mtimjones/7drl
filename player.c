@@ -35,6 +35,8 @@ void PlayerInit( void )
    player.MaxHealth = player.Health;
    player.ArtifactsHeld = 0;
    player.SlingRange = 8;
+   player.ShotsAvailable = 1;
+   player.ShotsActive = 0;
 
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
@@ -62,8 +64,9 @@ void EmitPlayerStats( void )
 
    mvwprintw( mainwin,  8, (MAP_NCOLS)+1, " Health:      %3d", player.Health );
    mvwprintw( mainwin,  9, (MAP_NCOLS)+1, " Sling Range:  %2d", player.SlingRange );
+   mvwprintw( mainwin, 10, (MAP_NCOLS)+1, " Shots Avail:  %2d", player.ShotsAvailable );
 
-   mvwprintw( mainwin, 11, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
+   mvwprintw( mainwin, 12, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
 
    return;
 }
@@ -135,6 +138,7 @@ void PlayerMove( void )
    int Y, X;
    int dy=0, dx=0;
    int moved = 0;
+   MEVENT event;
 
    extern WINDOW *mainwin;
 
@@ -144,39 +148,59 @@ void PlayerMove( void )
 
    if ( c != ERR )
    {
-      if ( (char)c == 'w' )
+      if ( c == KEY_MOUSE )
       {
-         dy=-1;
-         moved = 1;
-      }
-      else if ( (char)c == 's' )
-      {
-         dy=1;
-         moved = 1;
-      }
-      else if ( (char)c == 'a' )
-      {
-         dx=-1;
-         moved = 1;
-      }
-      else if ( (char)c == 'd' )
-      {
-         dx=1;
-         moved = 1;
-      }
+         if ( getmouse( &event ) == OK )
+         {
+            if ( ( event.bstate & BUTTON1_CLICKED ) && player.ShotsAvailable )
+            {
+               extern unsigned offsety, offsetx;
 
-      if ( moved )
-      {
-         if ( map_get_item( Y+dy, X+dx )  == SPACE_ICON )
-         {
-            map_move_item( Y, X, dy, dx );
-            Y+=dy; X+=dx;
-            SetPlayerLocation( Y, X );
+               int targetY = event.y - offsety;
+               int targetX = event.x - offsetx;
+
+               createProjectile( Y, X, targetY, targetX );
+            }
          }
-         else
+
+      }
+      else
+      {
+         // Key hit
+         if ( (char)c == 'w' )
          {
-            // @TODO: We're either hitting a wall, mountain, or attacking.
-            PlayerAttack( Y+dy, X+dx );
+            dy=-1;
+            moved = 1;
+         }
+         else if ( (char)c == 's' )
+         {
+            dy=1;
+            moved = 1;
+         }
+         else if ( (char)c == 'a' )
+         {
+            dx=-1;
+            moved = 1;
+         }
+         else if ( (char)c == 'd' )
+         {
+            dx=1;
+            moved = 1;
+         }
+
+         if ( moved )
+         {
+            if ( map_get_item( Y+dy, X+dx )  == SPACE_ICON )
+            {
+               map_move_item( Y, X, dy, dx );
+               Y+=dy; X+=dx;
+               SetPlayerLocation( Y, X );
+            }
+            else
+            {
+               // @TODO: We're either hitting a wall, mountain, or attacking.
+               PlayerAttack( Y+dy, X+dx );
+            }
          }
       }
    }

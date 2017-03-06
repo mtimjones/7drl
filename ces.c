@@ -42,6 +42,40 @@ void destroyEntity( unsigned int entity )
    return;
 }
 
+
+unsigned int createProjectile( int curY, int curX, int targY, int targX )
+{
+   int entity;
+   int y, x;
+
+   entity = createEntity( );
+
+   if ( entity < MAX_ENTITIES )
+   {
+      world.mask[ entity ] = COMPONENT_LOCATION   |
+                             COMPONENT_PROJECTILE |
+                             COMPONENT_ATTACK     |
+                             COMPONENT_MOVEMENT;
+
+      // Place the projectile in the environment.
+      world.location[ entity ].Y = curY;
+      world.location[ entity ].X = curX;
+
+      world.projectile[ entity ].targetY = targY;
+      world.projectile[ entity ].targetX = targX;
+
+      world.movement[ entity ].Speed = 5;
+      world.movement[ entity ].State = 0;
+
+      world.attack  [ entity ].Strength = 5;
+
+//      map_place_item( y, x, PROJ );
+   }
+
+   return entity;
+}
+
+
 unsigned int createAnimal( )
 {
    int entity;
