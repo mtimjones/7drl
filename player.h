@@ -11,9 +11,9 @@ typedef struct Player_type
    int Health;
    int MaxHealth;
    int ArtifactsHeld;
-   int Strength;
    int LocationY;
    int LocationX;
+   int SlingRange;
 
 } Player_type;
 

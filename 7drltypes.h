@@ -46,6 +46,9 @@
 #define SPACE_ICON        ' '
 #define ABYSS_ICON        '~'
 #define SHOT_ICON         '.'
+#define SLING_ICON        '?'
+
+#define SLING_BONUS_ITEMS     20
 
 // Function prototypes
 void win_map_viewport( int Y, int X );

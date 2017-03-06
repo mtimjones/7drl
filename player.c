@@ -34,7 +34,7 @@ void PlayerInit( void )
    player.Health = 20;
    player.MaxHealth = player.Health;
    player.ArtifactsHeld = 0;
-   player.Strength = 1;
+   player.SlingRange = 8;
 
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
@@ -61,7 +61,7 @@ void EmitPlayerStats( void )
    mvwprintw( mainwin,  6, (MAP_NCOLS)+1, " XPtoNextLvl: %3d", player.XPToNextLevel );
 
    mvwprintw( mainwin,  8, (MAP_NCOLS)+1, " Health:      %3d", player.Health );
-   mvwprintw( mainwin,  9, (MAP_NCOLS)+1, " Strength:     %2d", player.Strength );
+   mvwprintw( mainwin,  9, (MAP_NCOLS)+1, " Sling Range:  %2d", player.SlingRange );
 
    mvwprintw( mainwin, 11, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
 
@@ -102,7 +102,7 @@ void PlayerAttack( int Y, int X )
          entity = getEntityAt( Y, X );
 
          // Attack
-         world.health[ entity ].Health -= player.Strength;
+         world.health[ entity ].Health -= player.Level;
 
          // Did we kill it?
          if ( world.health[ entity ].Health <= 0 )
@@ -113,6 +113,13 @@ void PlayerAttack( int Y, int X )
             map_place_item( Y, X, SPACE_ICON );
             createAnimal( );
          }
+         break;
+
+      case SLING_ICON:
+         // Player found the sling.
+         player.SlingRange++;
+         add_message( "Sling range has increased." );
+         map_place_item( Y, X, SPACE_ICON );
          break;
 
       default:

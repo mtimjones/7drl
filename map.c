@@ -72,6 +72,16 @@ void MapInit( void )
       Density += ObstacleCreate( );
    }
 
+   // Add slings to the environment (which extend its range).
+   for ( int i = 0 ; i < SLING_BONUS_ITEMS ; i++ )
+   {
+      do {
+         Y = getRand( Y_MAP_MAX );
+         X = getRand( X_MAP_MAX );
+      } while ( !IsAreaClear( Y, X ) );
+      map_place_item( Y, X, SLING_ICON );
+   }
+
    return;
 }
 

@@ -67,7 +67,7 @@ unsigned int createAnimal( )
       world.location[ entity ].Y = y;
       world.location[ entity ].X = x;
 
-      world.movement[ entity ].Speed = 15 + getRand( 5 );
+      world.movement[ entity ].Speed = 13 + getRand( 5 );
       world.movement[ entity ].State = 0;
 
       world.health[ entity ].Health = 5;
