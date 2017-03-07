@@ -141,9 +141,19 @@ void PlayerAttack( int Y, int X )
          break;
 
       case SLING_ICON:
-         // Player found the sling.
-         player.SlingRange++;
-         add_message( "Sling range has increased." );
+         // Player found a sling bonus.
+         if ( getRand( 100 ) > 90 )
+         {
+            // Got a sling shot bonus.
+            player.ShotsAvailable++;
+            add_message( "Sling shots has increased." );
+         }
+         else
+         {
+            // Got a sling range bonus.
+            player.SlingRange++;
+            add_message( "Sling range has increased." );
+         }
          map_place_item( Y, X, SPACE_ICON );
          break;
 

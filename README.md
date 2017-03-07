@@ -21,6 +21,8 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add combat system, how attack works, defense, etc.
 
+- [ ]  Add a health system (animals increase health, level increases health max, etc.).
+
 - [x]  XP System, XP to next level is 110% of previous level.
 
 - [x]  Update the UI to permit stats.
@@ -44,6 +46,8 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 - [ ]  Add support for mouse click detection (for projectiles). (Stretch)
 
 - [x]  Add a sling.  The sling shoots for 8 spaces (can be extended with sling bonus items).
+
+- [x]  Add sling bonus system (90% range, 10% shot bonus).
 
 - [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
