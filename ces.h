@@ -35,24 +35,24 @@ typedef struct ComponentXPValue
 
 } ComponentXPValue;
 
-typedef struct ComponentProjectile
+typedef struct ComponentTarget
 {
-   int targetY;
-   int targetX;
+   int dY;
+   int dX;
 
-} ComponentProjectile;
+} ComponentTarget;
 
 typedef enum
 {
-   COMPONENT_NONE        = 0,
-   COMPONENT_LOCATION    = 1 << 1,
-   COMPONENT_HEALTH      = 1 << 2,
-   COMPONENT_ATTACK      = 1 << 3,
-   COMPONENT_MOVEMENT    = 1 << 4,
-   COMPONENT_XPVALUE     = 1 << 5,
-   COMPONENT_ANIMAL      = 1 << 6,
-   COMPONENT_PROTECTOR   = 1 << 7,
-   COMPONENT_PROJECTILE  = 1 << 8,
+   COMPONENT_NONE      = 0,
+   COMPONENT_LOCATION  = 1 << 1,
+   COMPONENT_HEALTH    = 1 << 2,
+   COMPONENT_ATTACK    = 1 << 3,
+   COMPONENT_MOVEMENT  = 1 << 4,
+   COMPONENT_XPVALUE   = 1 << 5,
+   COMPONENT_ANIMAL    = 1 << 6,
+   COMPONENT_PROTECTOR = 1 << 7,
+   COMPONENT_TARGET    = 1 << 8,
 
 } Component;
 
@@ -73,7 +73,7 @@ typedef struct World
    ComponentAttack       attack     [ MAX_ENTITIES ];
    ComponentMovement     movement   [ MAX_ENTITIES ];
    ComponentXPValue      XPValue    [ MAX_ENTITIES ];
-   ComponentProjectile   projectile [ MAX_ENTITIES ];
+   ComponentTarget       target     [ MAX_ENTITIES ];
 
 } World;
 

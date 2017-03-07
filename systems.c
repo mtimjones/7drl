@@ -11,11 +11,27 @@ void SystemMovementFunction( )
    extern World world;
 
    // Animate the projectiles.
-   mask = COMPONENT_PROJECTILE;
+   mask = COMPONENT_TARGET;
    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
    {
+      int y, x;
+
       if ( ( world.mask[ entity ] & mask ) == mask )
       {
+         y = world.location[ entity ].Y + world.target[ entity ].dY;
+         x = world.location[ entity ].X + world.target[ entity ].dX;
+         if ( map_get_item( y, x ) == SPACE_ICON )
+         {
+            // Move the projectile.
+            map_move_item( world.location[ entity ].Y, world.location[ entity ].X,
+                           world.target[ entity ].dY, world.target[ entity ].dX );
+            world.location[ entity ].Y += world.target[ entity ].dY;
+            world.location[ entity ].X += world.target[ entity ].dX;
+         }
+         else
+         {
+           // we've hit something, what was it?
+         }
       }
    }
 

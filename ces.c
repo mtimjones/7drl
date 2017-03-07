@@ -43,7 +43,7 @@ void destroyEntity( unsigned int entity )
 }
 
 
-unsigned int createProjectile( int curY, int curX, int targY, int targX )
+unsigned int createProjectile( int dY, int dX )
 {
    int entity;
    int y, x;
@@ -52,24 +52,34 @@ unsigned int createProjectile( int curY, int curX, int targY, int targX )
 
    if ( entity < MAX_ENTITIES )
    {
-      world.mask[ entity ] = COMPONENT_LOCATION   |
-                             COMPONENT_PROJECTILE |
-                             COMPONENT_ATTACK     |
+      GetPlayerLocation( &y, &x );
+
+      world.mask[ entity ] = COMPONENT_LOCATION  |
+                             COMPONENT_TARGET    |
+                             COMPONENT_ATTACK    |
                              COMPONENT_MOVEMENT;
 
       // Place the projectile in the environment.
-      world.location[ entity ].Y = curY;
-      world.location[ entity ].X = curX;
+      world.location[ entity ].Y = y+dY;
+      world.location[ entity ].X = x+dX;
 
-      world.projectile[ entity ].targetY = targY;
-      world.projectile[ entity ].targetX = targX;
+      world.target[ entity ].dY = dY;
+      world.target[ entity ].dX = dX;
 
       world.movement[ entity ].Speed = 5;
       world.movement[ entity ].State = 0;
 
       world.attack  [ entity ].Strength = 5;
 
-//      map_place_item( y, x, PROJ );
+      if ( map_get_item( world.location[ entity ].Y, 
+                         world.location[ entity ].X ) == SPACE_ICON )
+      {
+         map_place_item( y, x, PROJECTILE_ICON );
+      }
+      else
+      {
+         // player attack.
+      }
    }
 
    return entity;

@@ -15,7 +15,11 @@ typedef struct Player_type
    int LocationX;
    int SlingRange;
    int ShotsAvailable;
-   int ShotsActive;
+   int ShotsActive;  // Is this needed?
+
+   // Last direction moved.
+   int dY;
+   int dX;
 
 } Player_type;
 

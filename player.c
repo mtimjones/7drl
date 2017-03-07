@@ -38,6 +38,8 @@ void PlayerInit( void )
    player.ShotsAvailable = 1;
    player.ShotsActive = 0;
 
+   player.dY = player.dX = 1;
+
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
 
@@ -136,7 +138,6 @@ void PlayerMove( void )
 {
    int c;
    int Y, X;
-   int dy=0, dx=0;
    int moved = 0;
    MEVENT event;
 
@@ -148,59 +149,49 @@ void PlayerMove( void )
 
    if ( c != ERR )
    {
-      if ( c == KEY_MOUSE )
+      // Key hit
+      if ( (char)c == 'w' )
       {
-         if ( getmouse( &event ) == OK )
-         {
-            if ( ( event.bstate & BUTTON1_CLICKED ) && player.ShotsAvailable )
-            {
-               extern unsigned offsety, offsetx;
-
-               int targetY = event.y - offsety;
-               int targetX = event.x - offsetx;
-
-               createProjectile( Y, X, targetY, targetX );
-            }
-         }
-
+         player.dY = -1; player.dX = 0;
+         moved = 1;
       }
-      else
+      else if ( (char)c == 's' )
       {
-         // Key hit
-         if ( (char)c == 'w' )
+         player.dY = 1; player.dX = 0;
+         moved = 1;
+      }
+      else if ( (char)c == 'a' )
+      {
+         player.dX = -1; player.dY = 0;
+         moved = 1;
+      }
+      else if ( (char)c == 'd' )
+      {
+         player.dX = 1; player.dY = 0;
+         moved = 1;
+      }
+      else if ( (char)c == ' ' )
+      {
+         if ( player.ShotsAvailable )
          {
-            dy=-1;
-            moved = 1;
+            player.ShotsAvailable--;
+            player.ShotsActive++;
+            createProjectile( player.dY, player.dX );
          }
-         else if ( (char)c == 's' )
-         {
-            dy=1;
-            moved = 1;
-         }
-         else if ( (char)c == 'a' )
-         {
-            dx=-1;
-            moved = 1;
-         }
-         else if ( (char)c == 'd' )
-         {
-            dx=1;
-            moved = 1;
-         }
+      }
 
-         if ( moved )
+      if ( moved )
+      {
+         if ( map_get_item( Y+player.dY, X+player.dX ) == SPACE_ICON )
          {
-            if ( map_get_item( Y+dy, X+dx )  == SPACE_ICON )
-            {
-               map_move_item( Y, X, dy, dx );
-               Y+=dy; X+=dx;
-               SetPlayerLocation( Y, X );
-            }
-            else
-            {
-               // @TODO: We're either hitting a wall, mountain, or attacking.
-               PlayerAttack( Y+dy, X+dx );
-            }
+            map_move_item( Y, X, player.dY, player.dX );
+            Y += player.dY; X += player.dX;
+            SetPlayerLocation( Y, X );
+         }
+         else
+         {
+            // @TODO: We're either hitting a wall, mountain, or attacking.
+            PlayerAttack( Y+player.dY, X+player.dX );
          }
       }
    }

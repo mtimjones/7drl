@@ -81,6 +81,6 @@ void SystemMovementFunction( void );
 
 int DistanceToPlayer( int y1, int x1 );
 
-unsigned int createProjectile( int Y, int X, int targetY, int targetX );
+unsigned int createProjectile( int dY, int dX );
 
 #endif // __7DRLTYPES_H
