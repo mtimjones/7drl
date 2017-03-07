@@ -21,7 +21,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add combat system, how attack works, defense, etc.
 
-- [ ]  XP System, XP to next level is 110% of previous level.
+- [x]  XP System, XP to next level is 110% of previous level.
 
 - [x]  Update the UI to permit stats.
 
@@ -35,19 +35,21 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Add a function for distance to player.
 
-- [ ]  Two types of enemies in the environment.  Animals, that can restore health and Protectors that carry artifacts (harder to kill).
+- [x]  Two types of enemies in the environment.  Animals, that can restore health and Protectors that carry artifacts (harder to kill).
 
 - [ ]  Add A* pathfinding.
 
 - [ ]  In the stats section, show the direction of the closest animal and protector. (Stretch)
 
-- [ ]  Add support for mouse click detection (for projectiles).
+- [ ]  Add support for mouse click detection (for projectiles). (Stretch)
 
-- [ ]  Add a sling which is attained after killing a random number of animals.  The sling shoots for 8 spaces + player level.
+- [x]  Add a sling.  The sling shoots for 8 spaces (can be extended with sling bonus items).
 
 - [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
 - [ ]  Add towers that reduce health within a distance, or shoot at the player.  Perhaps these could be at the end near the exit.
+
+- [ ]  Add ncurses color. (Stretch)
 
 
 # Dependencies
