@@ -90,6 +90,7 @@ if ( 0 ) {
       {
          // player attack.
          IncrementProjectiles( );
+         destroyEntity( entity );
       }
    }
 

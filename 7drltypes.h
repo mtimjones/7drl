@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sys/time.h>
-#include <curses.h>
+#include <ncurses.h>
 #include <strings.h>
 #include <string.h>
 
