@@ -53,7 +53,8 @@ unsigned int createProjectile( void )
 
    if ( entity < MAX_ENTITIES )
    {
-      GetPlayerLocation( &y, &x );
+      y = GetPlayerLocationY( );
+      x = GetPlayerLocationX( );
       GetPlayerdYdX( &dY, &dX );
 
       world.mask[ entity ] = COMPONENT_LOCATION  |

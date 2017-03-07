@@ -66,7 +66,8 @@ char *get_message( int pos );
 int IsAreaClear( int centerY, int centerX );
 
 void PlayerInit( void );
-void GetPlayerLocation( int *Y, int *X );
+int  GetPlayerLocationY( void );
+int  GetPlayerLocationX( void );
 void SetPlayerLocation( int Y, int X );
 void GetPlayerdYdX( int *dY, int *dX );
 int  GetShotDistance( void );

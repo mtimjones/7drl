@@ -14,7 +14,8 @@ int DistanceToPlayer( int y1, int x1 )
 {
    int x, y;
 
-   GetPlayerLocation( &y, &x );
+   y = GetPlayerLocationY( );
+   x = GetPlayerLocationX( );
 
    return distance( y, x, y1, x1 );
 }

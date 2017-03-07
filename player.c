@@ -5,12 +5,14 @@
 
 static Player_type player;
 
-void GetPlayerLocation( int *Y, int *X )
+int GetPlayerLocationY( void )
 {
-   *Y = player.LocationY;
-   *X = player.LocationX;
+   return player.LocationY;
+}
 
-   return;
+int GetPlayerLocationX( void )
+{
+   return player.LocationX;
 }
 
 void SetPlayerLocation( int Y, int X )
@@ -142,7 +144,7 @@ void PlayerAttack( int Y, int X )
 
       case SLING_ICON:
          // Player found a sling bonus.
-         if ( getRand( 100 ) > 90 )
+         if ( getRand( 100 ) > 80 )
          {
             // Got a sling shot bonus.
             player.ShotsAvailable++;
@@ -172,7 +174,8 @@ void PlayerMove( void )
 
    extern WINDOW *mainwin;
 
-   GetPlayerLocation( &Y, &X );
+   Y = GetPlayerLocationY( );
+   X = GetPlayerLocationX( );
 
    c = wgetch( mainwin );
 

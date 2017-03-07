@@ -37,7 +37,8 @@ void win_update( void )
    mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( NCOLS - 2 ) );
    mvwvline( mainwin, 1, ( MAP_NCOLS - 1 ), '|', ( MAP_NLINES - 2 ) );
 
-   GetPlayerLocation( &Y, &X );
+   Y = GetPlayerLocationY( );
+   X = GetPlayerLocationX( );
 
    win_map_viewport( Y, X );
 
