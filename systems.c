@@ -19,11 +19,6 @@ void SystemMovementFunction( )
          // If state matches speed, time to move.
          if ( ++world.movement[ entity ].State >= world.movement[ entity ].Speed )
          {
-if ( 1 ) {
-   char line[80];
-   sprintf( line, "Projectile entity %d running", entity );
-   add_message( line );
-}
             if ( ++world.target[ entity ].distance >= GetShotDistance( ) )
             {
                map_place_item( world.location[ entity ].Y, world.location[ entity ].X, SPACE_ICON );
@@ -44,8 +39,14 @@ if ( 1 ) {
                // If the next location is vacant, move the projectile.
                if ( map_get_item( y, x ) == SPACE_ICON )
                {
+if ( 0 ) {
+   char line[80];
+   sprintf( line, "Projectile entity %d moving %d, %d", entity, y, x  );
+   add_message( line );
+}
                   // Move the projectile.
-                  map_move_item( world.location[ entity ].Y, world.location[ entity ].X, y, x );
+                  map_move_item( world.location[ entity ].Y, world.location[ entity ].X, 
+                                 world.target[ entity ].dY, world.target[ entity ].dX );
                   world.location[ entity ].Y = y;
                   world.location[ entity ].X = x;
                }

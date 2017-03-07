@@ -71,8 +71,14 @@ unsigned int createProjectile( void )
 
       world.attack  [ entity ].Strength = 5;
 
-      world.movement[ entity ].Speed = 10;
+      world.movement[ entity ].Speed = 5;
       world.movement[ entity ].State = 0;
+
+if ( 0 ) {
+   char line[80];
+   sprintf( line, "Projectile entity %d running %d, %d", entity, y+dY, x+dX );
+   add_message( line );
+}
 
       if ( map_get_item( world.location[ entity ].Y, 
                          world.location[ entity ].X ) == SPACE_ICON )
