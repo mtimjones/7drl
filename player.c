@@ -23,12 +23,14 @@ void SetPlayerLocation( int Y, int X )
    return;
 }
 
-void GetPlayerdYdX( int *dY, int *dX )
+int GetPlayerLocationdY( void )
 {
-   *dY = player.dY;
-   *dX = player.dX;
+   return player.dY;
+}
 
-   return;
+int GetPlayerLocationdX( void )
+{
+   return player.dX;
 }
 
 void IncrementProjectiles( void )

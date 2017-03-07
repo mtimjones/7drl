@@ -55,7 +55,8 @@ unsigned int createProjectile( void )
    {
       y = GetPlayerLocationY( );
       x = GetPlayerLocationX( );
-      GetPlayerdYdX( &dY, &dX );
+      dY = GetPlayerLocationdY( );
+      dX = GetPlayerLocationdX( );
 
       world.mask[ entity ] = COMPONENT_LOCATION  |
                              COMPONENT_TARGET    |
