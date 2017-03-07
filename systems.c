@@ -11,26 +11,52 @@ void SystemMovementFunction( )
    extern World world;
 
    // Animate the projectiles.
-   mask = COMPONENT_TARGET;
+   mask =  COMPONENT_MOVEMENT | COMPONENT_TARGET;
    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
    {
-      int y, x;
-
       if ( ( world.mask[ entity ] & mask ) == mask )
       {
-         y = world.location[ entity ].Y + world.target[ entity ].dY;
-         x = world.location[ entity ].X + world.target[ entity ].dX;
-         if ( map_get_item( y, x ) == SPACE_ICON )
+         // If state matches speed, time to move.
+         if ( ++world.movement[ entity ].State >= world.movement[ entity ].Speed )
          {
-            // Move the projectile.
-            map_move_item( world.location[ entity ].Y, world.location[ entity ].X,
-                           world.target[ entity ].dY, world.target[ entity ].dX );
-            world.location[ entity ].Y += world.target[ entity ].dY;
-            world.location[ entity ].X += world.target[ entity ].dX;
-         }
-         else
-         {
-           // we've hit something, what was it?
+if ( 1 ) {
+   char line[80];
+   sprintf( line, "Projectile entity %d running", entity );
+   add_message( line );
+}
+            if ( ++world.target[ entity ].distance >= GetShotDistance( ) )
+            {
+               map_place_item( world.location[ entity ].Y, world.location[ entity ].X, SPACE_ICON );
+               destroyEntity( entity );
+               IncrementProjectiles( );
+            }
+            else
+            {
+               int y, x;
+
+               // Reset the speed state.
+               world.movement[ entity ].State = 0;
+
+               // Next position of the projectile.
+               y = world.location[ entity ].Y + world.target[ entity ].dY;
+               x = world.location[ entity ].X + world.target[ entity ].dX;
+
+               // If the next location is vacant, move the projectile.
+               if ( map_get_item( y, x ) == SPACE_ICON )
+               {
+                  // Move the projectile.
+                  map_move_item( world.location[ entity ].Y, world.location[ entity ].X, y, x );
+                  world.location[ entity ].Y = y;
+                  world.location[ entity ].X = x;
+               }
+               else
+               {
+                  // we've hit something, what was it?
+                  map_place_item( world.location[ entity ].Y, world.location[ entity ].X, SPACE_ICON );
+                  destroyEntity( entity );
+                  IncrementProjectiles( );
+               }
+            }
          }
       }
    }

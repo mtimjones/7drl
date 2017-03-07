@@ -43,16 +43,18 @@ void destroyEntity( unsigned int entity )
 }
 
 
-unsigned int createProjectile( int dY, int dX )
+unsigned int createProjectile( void )
 {
    int entity;
    int y, x;
+   int dY, dX;
 
    entity = createEntity( );
 
    if ( entity < MAX_ENTITIES )
    {
       GetPlayerLocation( &y, &x );
+      GetPlayerdYdX( &dY, &dX );
 
       world.mask[ entity ] = COMPONENT_LOCATION  |
                              COMPONENT_TARGET    |
@@ -65,20 +67,23 @@ unsigned int createProjectile( int dY, int dX )
 
       world.target[ entity ].dY = dY;
       world.target[ entity ].dX = dX;
-
-      world.movement[ entity ].Speed = 5;
-      world.movement[ entity ].State = 0;
+      world.target[ entity ].distance = 0;
 
       world.attack  [ entity ].Strength = 5;
+
+      world.movement[ entity ].Speed = 10;
+      world.movement[ entity ].State = 0;
 
       if ( map_get_item( world.location[ entity ].Y, 
                          world.location[ entity ].X ) == SPACE_ICON )
       {
-         map_place_item( y, x, PROJECTILE_ICON );
+         map_place_item( world.location[ entity ].Y, world.location[ entity ].X,
+                           PROJECTILE_ICON );
       }
       else
       {
          // player attack.
+         IncrementProjectiles( );
       }
    }
 

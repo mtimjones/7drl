@@ -39,6 +39,7 @@ typedef struct ComponentTarget
 {
    int dY;
    int dX;
+   int distance;
 
 } ComponentTarget;
 
@@ -60,7 +61,9 @@ typedef enum
 #define NUMBER_OF_PROTECTORS   20
 #define NUMBER_OF_PROJECTILES   5
 
-#define MAX_ENTITIES   ( NUMBER_OF_ANIMALS + NUMBER_OF_PROTECTORS )
+#define MAX_ENTITIES   ( NUMBER_OF_ANIMALS     + \
+                         NUMBER_OF_PROTECTORS  + \
+                         NUMBER_OF_PROJECTILES  )
 
 typedef struct World
 {
@@ -68,12 +71,12 @@ typedef struct World
 
    int id[ MAX_ENTITIES ];
 
-   ComponentLocation     location   [ MAX_ENTITIES ];
-   ComponentHealth       health     [ MAX_ENTITIES ];
-   ComponentAttack       attack     [ MAX_ENTITIES ];
-   ComponentMovement     movement   [ MAX_ENTITIES ];
-   ComponentXPValue      XPValue    [ MAX_ENTITIES ];
-   ComponentTarget       target     [ MAX_ENTITIES ];
+   ComponentLocation     location [ MAX_ENTITIES ];
+   ComponentHealth       health   [ MAX_ENTITIES ];
+   ComponentAttack       attack   [ MAX_ENTITIES ];
+   ComponentMovement     movement [ MAX_ENTITIES ];
+   ComponentXPValue      XPValue  [ MAX_ENTITIES ];
+   ComponentTarget       target   [ MAX_ENTITIES ];
 
 } World;
 

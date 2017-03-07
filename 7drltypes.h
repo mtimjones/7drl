@@ -47,7 +47,7 @@
 #define ABYSS_ICON        '~'
 #define SHOT_ICON         '.'
 #define SLING_ICON        '('
-#define PROJECTILE_ICON   '*'
+#define PROJECTILE_ICON   '.'
 
 #define SLING_BONUS_ITEMS     20
 
@@ -68,9 +68,12 @@ int IsAreaClear( int centerY, int centerX );
 void PlayerInit( void );
 void GetPlayerLocation( int *Y, int *X );
 void SetPlayerLocation( int Y, int X );
+void GetPlayerdYdX( int *dY, int *dX );
+int  GetShotDistance( void );
 void PlayerAttack( int dy, int dx );
 void PlayerMove( void );
 void EmitPlayerStats( void );
+void IncrementProjectiles( void );
 
 void InitEntities( void );
 int  getEntityAt( int Y, int X );
@@ -81,6 +84,6 @@ void SystemMovementFunction( void );
 
 int DistanceToPlayer( int y1, int x1 );
 
-unsigned int createProjectile( int dY, int dX );
+unsigned int createProjectile( void );
 
 #endif // __7DRLTYPES_H

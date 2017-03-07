@@ -21,6 +21,26 @@ void SetPlayerLocation( int Y, int X )
    return;
 }
 
+void GetPlayerdYdX( int *dY, int *dX )
+{
+   *dY = player.dY;
+   *dX = player.dX;
+
+   return;
+}
+
+void IncrementProjectiles( void )
+{
+   player.ShotsAvailable++;
+
+   return;
+}
+
+int GetShotDistance( void )
+{
+   return player.SlingRange;
+}
+
 void PlayerInit( void )
 {
    int middleY, middleX;
@@ -38,7 +58,7 @@ void PlayerInit( void )
    player.ShotsAvailable = 1;
    player.ShotsActive = 0;
 
-   player.dY = player.dX = 1;
+   player.dY = player.dX = 0;
 
    middleY = ( Y_MAP_MAX / 2 ) - ( Ylimit / 2 );
    middleX = ( X_MAP_MAX / 2 ) - ( Xlimit / 2 );
@@ -139,7 +159,6 @@ void PlayerMove( void )
    int c;
    int Y, X;
    int moved = 0;
-   MEVENT event;
 
    extern WINDOW *mainwin;
 
@@ -172,11 +191,11 @@ void PlayerMove( void )
       }
       else if ( (char)c == ' ' )
       {
-         if ( player.ShotsAvailable )
+         if ( ( player.ShotsAvailable ) && ( player.dY != player.dX ) )
          {
             player.ShotsAvailable--;
             player.ShotsActive++;
-            createProjectile( player.dY, player.dX );
+            createProjectile( );
          }
       }
 
