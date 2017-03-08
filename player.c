@@ -169,7 +169,7 @@ void Attack( int Attack, int Y, int X, char source )
             if ( item == ANIMAL_ICON )
             {
                add_message( "You've killed the animal." );
-               PlayerAddHealth( ( getRand( 4 ) + 2 ) );
+               PlayerAddHealth( ( getRand( 2 ) + 2 ) );
             }
             else if ( item == PROTECTOR_ICON )
             {
