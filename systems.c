@@ -39,11 +39,6 @@ void SystemMovementFunction( )
                // If the next location is vacant, move the projectile.
                if ( map_get_item( y, x ) == SPACE_ICON )
                {
-if ( 0 ) {
-   char line[80];
-   sprintf( line, "Projectile entity %d moving %d, %d", entity, y, x  );
-   add_message( line );
-}
                   // Move the projectile.
                   map_move_item( world.location[ entity ].Y, world.location[ entity ].X, 
                                  world.target[ entity ].dY, world.target[ entity ].dX );
@@ -52,7 +47,10 @@ if ( 0 ) {
                }
                else
                {
-                  // we've hit something, what was it?
+                  // Allow the projectile to attack the item on the map.
+                  Attack( world.attack[ entity ].Attack, y, x, PROJECTILE_ICON );
+
+                  // Remove the projectile from the map.
                   map_place_item( world.location[ entity ].Y, world.location[ entity ].X, SPACE_ICON );
                   destroyEntity( entity );
                   IncrementProjectiles( );

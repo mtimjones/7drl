@@ -122,6 +122,18 @@ void PlayerAddXP( int XP )
    return;
 }
 
+void PlayerDecreaseHealth( int Health )
+{
+   player.Health -= Health;
+   if ( player.Health <= 0 )
+   {
+      // You have died.
+      // GameEnd = 1;
+   }
+
+   return;
+}
+
 void PlayerAddHealth( int health )
 {
    player.Health += health;
@@ -133,11 +145,10 @@ void PlayerAddHealth( int health )
    return;
 }
 
-
-void PlayerAttack( int Y, int X )
+void Attack( int Attack, int Y, int X, char source )
 {
    char item;
-   int  entity;
+   int entity;
 
    extern World world;
 
@@ -146,22 +157,72 @@ void PlayerAttack( int Y, int X )
    switch( item )
    {
       case ANIMAL_ICON:
-         // Get the entity at this location.
+      case PROTECTOR_ICON:
          entity = getEntityAt( Y, X );
 
          // Attack
-         world.health[ entity ].Health -= player.Level;
+         world.health[ entity ].Health -= Attack;
 
          // Did we kill it?
          if ( world.health[ entity ].Health <= 0 )
          {
-            add_message( "You've killed the animal.\0" );
-            PlayerAddHealth( ( getRand( 4 ) + 2 ) );
+            if ( item == ANIMAL_ICON )
+            {
+               add_message( "You've killed the animal." );
+               PlayerAddHealth( ( getRand( 4 ) + 2 ) );
+            }
+            else if ( item == PROTECTOR_ICON )
+            {
+               add_message( "You've killed the protector." );
+               PlayerAddHealth( ( getRand( 6 ) + 4 ) );
+            }
+
             PlayerAddXP( world.XPValue[ entity ].XP );
             destroyEntity( entity );
             map_place_item( Y, X, SPACE_ICON );
-            createAnimal( );
+            if ( item == ANIMAL_ICON ) createAnimal( );
          }
+         else
+         {
+            if ( item == ANIMAL_ICON )
+            {
+               add_message( "You hit the animal." );
+            }
+            else if ( item == PROTECTOR_ICON )
+            {
+               add_message( "You hit the protector." );
+            }
+         }
+
+         break;
+
+      case BERRIES_ICON:
+      case SLING_ICON:
+         // Destroyed the item.
+         map_place_item( Y, X, SPACE_ICON );
+         break;
+
+      default:
+         // Hit a wall, tree, etc.  No effect.
+         break;
+   }
+
+   return;
+}
+
+
+void PlayerCollision( int Y, int X )
+{
+   char item;
+   int  entity;
+
+   item = map_get_item( Y, X );
+
+   switch( item )
+   {
+      case ANIMAL_ICON:
+      case PROTECTOR_ICON:
+         Attack( player.Level, Y, X, PLAYER_ICON );
          break;
 
       case SLING_ICON:
@@ -260,8 +321,8 @@ void PlayerMove( void )
          }
          else
          {
-            // @TODO: We're either hitting a wall, mountain, or attacking.
-            PlayerAttack( Y+player.dY, X+player.dX );
+            // We're either hitting a wall, mountain, or attacking.
+            PlayerCollision( Y+player.dY, X+player.dX );
          }
       }
    }

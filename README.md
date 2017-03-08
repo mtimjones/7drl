@@ -19,9 +19,9 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Add a CES (Component Entity System) framework for entities in the world (not player).
 
-- [ ]  Add combat system, how attack works, defense, etc.
+- [x]  Add combat system, how attack works, defense, etc.
 
-- [ ]  Add a health system (animals increase health, level increases health max, etc.).
+- [x]  Add a health system (animals increase health, level increases health max, etc.).
 
 - [x]  XP System, XP to next level is 110% of previous level.
 
