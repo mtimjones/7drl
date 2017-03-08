@@ -45,6 +45,11 @@ int GetShotDistance( void )
    return player.SlingRange;
 }
 
+int GetShotPower( void )
+{
+   return player.SlingPower;
+}
+
 void PlayerInit( void )
 {
    int middleY, middleX;
@@ -59,8 +64,8 @@ void PlayerInit( void )
    player.MaxHealth = player.Health;
    player.ArtifactsHeld = 0;
    player.SlingRange = 8;
+   player.SlingPower = 5;
    player.ShotsAvailable = 1;
-   player.ShotsActive = 0;
 
    player.dY = player.dX = 0;
 
@@ -89,10 +94,13 @@ void EmitPlayerStats( void )
    mvwprintw( mainwin,  6, (MAP_NCOLS)+1, " XPtoNextLvl: %3d", player.XPToNextLevel );
 
    mvwprintw( mainwin,  8, (MAP_NCOLS)+1, " Health:      %3d", player.Health );
-   mvwprintw( mainwin,  9, (MAP_NCOLS)+1, " Sling Range:  %2d", player.SlingRange );
-   mvwprintw( mainwin, 10, (MAP_NCOLS)+1, " Shots Avail:  %2d", player.ShotsAvailable );
+   mvwprintw( mainwin,  9, (MAP_NCOLS)+1, " Max Health:  %3d", player.MaxHealth );
 
-   mvwprintw( mainwin, 12, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
+   mvwprintw( mainwin, 11, (MAP_NCOLS)+1, " Shots Avail:  %2d", player.ShotsAvailable );
+   mvwprintw( mainwin, 12, (MAP_NCOLS)+1, " Sling Range:  %2d", player.SlingRange );
+   mvwprintw( mainwin, 13, (MAP_NCOLS)+1, " Sling Power:  %2d", player.SlingPower );
+
+   mvwprintw( mainwin, 15, (MAP_NCOLS)+1, " Artifacts:    %2d", player.ArtifactsHeld );
 
    return;
 }
@@ -110,6 +118,17 @@ void PlayerAddXP( int XP )
    }
 
    // @TODO: Provide the player with a small health bonus.
+
+   return;
+}
+
+void PlayerAddHealth( int health )
+{
+   player.Health += health;
+   if (player.Health > player.MaxHealth )
+   {
+      player.Health = player.MaxHealth;
+   }
 
    return;
 }
@@ -137,6 +156,7 @@ void PlayerAttack( int Y, int X )
          if ( world.health[ entity ].Health <= 0 )
          {
             add_message( "You've killed the animal.\0" );
+            PlayerAddHealth( ( getRand( 4 ) + 2 ) );
             PlayerAddXP( world.XPValue[ entity ].XP );
             destroyEntity( entity );
             map_place_item( Y, X, SPACE_ICON );
@@ -145,19 +165,36 @@ void PlayerAttack( int Y, int X )
          break;
 
       case SLING_ICON:
-         // Player found a sling bonus.
-         if ( getRand( 100 ) > 80 )
          {
-            // Got a sling shot bonus.
-            player.ShotsAvailable++;
-            add_message( "Sling shots has increased." );
+            // Player found a sling bonus.
+            int bonus = getRand( 100 );
+            if ( bonus >= 90 )
+            {
+               // Got a sling shot bonus.
+               player.ShotsAvailable++;
+               add_message( "Sling shots has increased." );
+            }
+            else if ( bonus >= 80 )
+            {
+               // Got a sling power bonus.
+               player.SlingPower++;
+               add_message( "Sling power has increased." );
+            }
+            else
+            {
+               // Got a sling range bonus.
+               player.SlingRange++;
+               add_message( "Sling range has increased." );
+            }
+
+            map_place_item( Y, X, SPACE_ICON );
+
          }
-         else
-         {
-            // Got a sling range bonus.
-            player.SlingRange++;
-            add_message( "Sling range has increased." );
-         }
+         break;
+
+      case BERRIES_ICON:
+         PlayerAddHealth( BERRIES_HEALTH );
+         add_message( "You eat the berries." );
          map_place_item( Y, X, SPACE_ICON );
          break;
 
@@ -209,7 +246,6 @@ void PlayerMove( void )
          if ( ( player.ShotsAvailable ) && ( player.dY != player.dX ) )
          {
             player.ShotsAvailable--;
-            player.ShotsActive++;
             createProjectile( );
          }
       }

@@ -18,7 +18,7 @@ typedef struct ComponentHealth
 
 typedef struct ComponentAttack
 {
-   int Strength;
+   int Attack;
 
 } ComponentAttack;
 

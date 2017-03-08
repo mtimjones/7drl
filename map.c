@@ -72,14 +72,24 @@ void MapInit( void )
       Density += ObstacleCreate( );
    }
 
-   // Add slings to the environment (which extend its range).
-   for ( int i = 0 ; i < SLING_BONUS_ITEMS ; i++ )
+   // Add sling bonuses to the environment.
+   for ( int i = 0 ; i < NUM_SLING_BONUS_ITEMS ; i++ )
    {
       do {
          Y = getRand( Y_MAP_MAX );
          X = getRand( X_MAP_MAX );
       } while ( !IsAreaClear( Y, X ) );
       map_place_item( Y, X, SLING_ICON );
+   }
+
+   // Add food to the environment.
+   for ( int i = 0 ; i < NUM_BERRIES_ITEMS ; i++ )
+   {
+      do {
+         Y = getRand( Y_MAP_MAX );
+         X = getRand( X_MAP_MAX );
+      } while ( !IsAreaClear( Y, X ) );
+      map_place_item( Y, X, BERRIES_ICON );
    }
 
    return;

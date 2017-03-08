@@ -71,9 +71,9 @@ unsigned int createProjectile( void )
       world.target[ entity ].dX = dX;
       world.target[ entity ].distance = 0;
 
-      world.attack  [ entity ].Strength = 5;
+      world.attack  [ entity ].Attack = GetShotPower( );
 
-      world.movement[ entity ].Speed = 5;
+      world.movement[ entity ].Speed = 4;
       world.movement[ entity ].State = 0;
 
 if ( 0 ) {

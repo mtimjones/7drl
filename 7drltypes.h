@@ -48,8 +48,12 @@
 #define SHOT_ICON         '.'
 #define SLING_ICON        '('
 #define PROJECTILE_ICON   '.'
+#define BERRIES_ICON      '#'
 
-#define SLING_BONUS_ITEMS     20
+#define NUM_SLING_BONUS_ITEMS     20
+#define NUM_BERRIES_ITEMS         20
+
+#define BERRIES_HEALTH    3
 
 // Function prototypes
 void win_map_viewport( int Y, int X );
@@ -76,6 +80,7 @@ void PlayerAttack( int dy, int dx );
 void PlayerMove( void );
 void EmitPlayerStats( void );
 void IncrementProjectiles( void );
+int  GetShotPower( void );
 
 void InitEntities( void );
 int  getEntityAt( int Y, int X );
