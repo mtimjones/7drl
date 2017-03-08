@@ -18,6 +18,8 @@
 #define MAP_NLINES      33
 #define MAP_NCOLS       69
 
+typedef int submap_t[ MAP_NLINES ] [ MAP_NCOLS ] ;
+
 // Size of the UI
 #define NLINES      (  7 + MAP_NLINES )
 #define NCOLS       ( 20 + MAP_NCOLS )
@@ -93,5 +95,7 @@ void SystemMovementFunction( void );
 int DistanceToPlayer( int y1, int x1 );
 
 unsigned int createProjectile( void );
+
+void get_submap( submap_t );
 
 #endif // __7DRLTYPES_H

@@ -94,6 +94,44 @@ void SystemMovementFunction( )
    }
 
    // Animate the protectors.
+   mask = COMPONENT_MOVEMENT | COMPONENT_PROTECTOR;
+   for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
+   {
+      if ( ( world.mask[ entity ] & mask ) == mask )
+      {
+         if (DistanceToPlayer( world.location[ entity ].Y, 
+                               world.location[ entity ].X ) > 40 ) continue;
+
+         // If state matches speed, time to move.
+         if ( ++world.movement[ entity ].State >= world.movement[ entity ].Speed )
+         {
+            char target;
+            submap_t Submap;
+
+            // Reset the speed state.
+            world.movement[ entity ].State = 0;
+
+            get_submap( Submap );
+            // MoveTowardsPlayer( Submap, &dy, &dx );
+
+            target = map_get_item( ( world.location[ entity ].Y + dy ),
+                                    ( world.location[ entity ].X + dx ) );
+
+            if ( target == SPACE_ICON )
+            {
+//               map_move_item( world.location[ entity ].Y,
+//                              world.location[ entity ].X, dy, dx );
+
+//               world.location[ entity ].Y += dy;
+//               world.location[ entity ].X += dx;
+            }
+            else if ( target == PLAYER_ICON )
+            {
+               // Attack the player...
+            }
+         }
+      }
+   }
 
    return;
 }

@@ -135,6 +135,34 @@ void win_map_viewport( int Y, int X )
    return;
 }
 
+void get_submap( submap_t Submap )
+{
+   int cy, cx;
+   int Y, X;
+
+   cy = GetPlayerLocationY( ) - ( ( MAP_NLINES - 2 ) / 2 );
+   cx = GetPlayerLocationX( ) - ( ( MAP_NCOLS -  2 ) / 2 );
+
+   for ( Y = 1 ; Y < ( MAP_NLINES ) ; Y++ )
+   {
+      for ( X = 1 ; X < ( MAP_NCOLS ) ; X++ )
+      {
+         switch ( map_get_item( Y+cy, X+cx ) )
+         {
+            case SPACE_ICON:
+            case PLAYER_ICON:
+               Submap[ Y ][ X ] = 0;
+               break;
+            default:
+               Submap[ Y ][ X ] = 1;
+               break;
+         }
+      }
+   }
+
+   return;
+}
+
 char map_get_item( int Y, int X )
 {
    return map[ Y ][ X ];
