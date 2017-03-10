@@ -265,6 +265,10 @@ void PlayerCollision( int Y, int X )
          map_place_item( Y, X, SPACE_ICON );
          add_message( "You've gained an artifact." );
          player.ArtifactsHeld++;
+         if ( player.ArtifactsHeld == 5 )
+         {
+            add_message( "Just 5 more artifacts and the exit is available." );
+         }
          break;
 
       default:

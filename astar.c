@@ -217,7 +217,14 @@ void getBestNextStep( node_t *walker, int *Y, int *X )
 {
    walker = ( node_t * )walker->parent;
 
-   *Y = walker->y, *X = walker->x;
+   if ( walker )
+   {
+      *Y = walker->y, *X = walker->x;
+   } 
+   else
+   {
+      *Y = *X = 0;
+   }
 
 if ( 0 ) {
    char line[80];

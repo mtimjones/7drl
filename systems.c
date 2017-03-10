@@ -124,16 +124,21 @@ void SystemMovementFunction( )
 
             if ( target == SPACE_ICON )
             {
-               map_move_item( world.location[ entity ].Y,
-                              world.location[ entity ].X, dy, dx );
+               map_place_item( world.location[ entity ].Y, world.location[ entity ].X, 
+                               SPACE_ICON );
 
                world.location[ entity ].Y += dy;
                world.location[ entity ].X += dx;
+
+               map_place_item( world.location[ entity ].Y, world.location[ entity ].X, 
+                               PROTECTOR_ICON );
+
             }
             else if ( target == PLAYER_ICON )
             {
                // Attack the player...
                PlayerDecreaseHealth( world.attack[ entity ].Attack );
+               add_message( "Protector attacks." );
             }
          }
       }
