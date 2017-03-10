@@ -35,6 +35,8 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add the secret door to escape.
 
+- [ ]  Add a final score (calculated based upon time, things killed, strength of weapon, level, etc.).
+
 - [x]  Add a function for distance to player.
 
 - [x]  Two types of enemies in the environment.  Animals, that can restore health and Protectors that carry artifacts (harder to kill).

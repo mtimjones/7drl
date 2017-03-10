@@ -156,7 +156,7 @@ void PlayerEndGame( void )
    }
    else
    {
-      printf( "You escaped.\n" );
+      printf( "You escaped!\n" );
    }
    
    printf( "\nEnding Stats:\n" );
