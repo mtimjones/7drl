@@ -55,11 +55,11 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add ncurses color. (Stretch)
 
-- [ ]  Need to detect player death and end game.
+- [x]  Need to detect player death and end game.
 
-- [ ]  Need to create an end-screen when the player dies or wins.
+- [x]  Need to create an end-screen when the player dies or wins.
 
-- [ ]  Add an end-game sequence where protectors appear around the exit requiring the player to kill them before escaping.
+- [ ]  Add an end-game sequence where protectors appear around the exit requiring the player to kill them before escaping. (Stretch)
 
 
 # Dependencies
