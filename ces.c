@@ -93,6 +93,9 @@ if ( 0 ) {
          // player attack.
          IncrementProjectiles( );
          destroyEntity( entity );
+         Attack( world.attack[ entity ].Attack, 
+                 world.location[ entity ].Y, world.location[ entity ].X,
+                 PROJECTILE_ICON );
       }
    }
 
@@ -164,8 +167,10 @@ unsigned int createProtector( )
       world.location[ entity ].Y = y;
       world.location[ entity ].X = x;
 
-      world.movement[ entity ].Speed = 3 + getRand( 2 );
+      world.movement[ entity ].Speed = 5 + getRand( 3 );
       world.movement[ entity ].State = 0;
+
+      world.attack[ entity ].Attack = 1;
 
       world.health[ entity ].Health = 20;
       world.XPValue[ entity].XP = 20;

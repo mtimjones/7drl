@@ -180,6 +180,7 @@ void Attack( int Attack, int Y, int X, char source )
             PlayerAddXP( world.XPValue[ entity ].XP );
             destroyEntity( entity );
             map_place_item( Y, X, SPACE_ICON );
+            if ( item == PROTECTOR_ICON ) map_place_item( Y, X, ARTIFACT_ICON );
             if ( item == ANIMAL_ICON ) createAnimal( );
          }
          else
@@ -257,6 +258,13 @@ void PlayerCollision( int Y, int X )
          PlayerAddHealth( BERRIES_HEALTH );
          add_message( "You eat the berries." );
          map_place_item( Y, X, SPACE_ICON );
+         break;
+
+      case ARTIFACT_ICON:
+         // You've picked up an artifact.
+         map_place_item( Y, X, SPACE_ICON );
+         add_message( "You've gained an artifact." );
+         player.ArtifactsHeld++;
          break;
 
       default:

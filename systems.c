@@ -93,7 +93,6 @@ void SystemMovementFunction( )
 
    }
 
-#if 1
    // Animate the protectors.
    mask = COMPONENT_MOVEMENT | COMPONENT_PROTECTOR;
    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
@@ -101,7 +100,7 @@ void SystemMovementFunction( )
       if ( ( world.mask[ entity ] & mask ) == mask )
       {
          if (DistanceToPlayer( world.location[ entity ].Y, 
-                               world.location[ entity ].X ) > 15 ) continue;
+                               world.location[ entity ].X ) > 20 ) continue;
 
          // If state matches speed, time to move.
          if ( ++world.movement[ entity ].State >= world.movement[ entity ].Speed )
@@ -134,11 +133,11 @@ void SystemMovementFunction( )
             else if ( target == PLAYER_ICON )
             {
                // Attack the player...
+               PlayerDecreaseHealth( world.attack[ entity ].Attack );
             }
          }
       }
    }
-#endif
 
    return;
 }

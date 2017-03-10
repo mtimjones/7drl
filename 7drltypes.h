@@ -95,5 +95,6 @@ int DistanceToPlayer( int y1, int x1 );
 unsigned int createProjectile( void );
 
 void MoveTowardsPlayer( int start_y, int start_x, int goal_y, int goal_x, int *Y, int *X );
+void PlayerDecreaseHealth( int Health );
 
 #endif // __7DRLTYPES_H

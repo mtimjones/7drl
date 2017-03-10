@@ -39,7 +39,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Two types of enemies in the environment.  Animals, that can restore health and Protectors that carry artifacts (harder to kill).
 
-- [ ]  Add A* pathfinding.
+- [x]  Add A* pathfinding.
 
 - [ ]  In the stats section, show the direction of the closest animal and protector. (Stretch)
 
