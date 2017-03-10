@@ -29,7 +29,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Add Animals (health NPCs) into the world (random movement, vary speed).
 
-- [ ]  Add Protectors, with pathfinding to attack the player.
+- [x]  Add Protectors, with pathfinding to attack the player.
 
 - [ ]  Add a dynamic legend which emits a description for the items on the screen. (Stretch)
 
@@ -54,6 +54,10 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 - [ ]  Add towers that emit enemies (near the exit).  Towers can be destroyed.
 
 - [ ]  Add ncurses color. (Stretch)
+
+- [ ]  Need to detect player death and end game.
+
+- [ ]  Need to create an end-screen when the player dies or wins.
 
 - [ ]  Add an end-game sequence where protectors appear around the exit requiring the player to kill them before escaping.
 
