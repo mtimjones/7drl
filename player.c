@@ -127,8 +127,11 @@ void PlayerDecreaseHealth( int Health )
    player.Health -= Health;
    if ( player.Health <= 0 )
    {
+      player.Health = 0;
+
       // You have died.
-      // GameEnd = 1;
+      extern unsigned int GameRunning;
+      GameRunning = 0;
    }
 
    return;
@@ -141,6 +144,26 @@ void PlayerAddHealth( int health )
    {
       player.Health = player.MaxHealth;
    }
+
+   return;
+}
+
+void PlayerEndGame( void )
+{
+   if ( player.Health == 0 )
+   {
+      printf( "You died.\n" );
+   }
+   else
+   {
+      printf( "You escaped.\n" );
+   }
+   
+   printf( "\nEnding Stats:\n" );
+   printf( "Level %2d, Health %d, XP %3d, Artifacts %2d\n",
+            player.Level, player.Health, player.XP, player.ArtifactsHeld );
+   printf( "Sling Range %2d, Power %d, Shots %d\n\n",
+            player.SlingRange, player.SlingPower, player.ShotsAvailable );
 
    return;
 }
@@ -289,6 +312,7 @@ void PlayerMove( void )
    Y = GetPlayerLocationY( );
    X = GetPlayerLocationX( );
 
+   // Get the next player move.
    c = wgetch( mainwin );
 
    if ( c != ERR )

@@ -41,7 +41,7 @@
 #define TREE_ICON         '^'
 #define PLAYER_ICON       '@'
 #define PROTECTOR_ICON    'P'
-#define ARTIFACT_ICON     '*'
+#define ARTIFACT_ICON     '$'
 #define ANIMAL_ICON       'a'
 #define SPACE_ICON        ' '
 #define ABYSS_ICON        '~'
@@ -96,5 +96,7 @@ unsigned int createProjectile( void );
 
 void MoveTowardsPlayer( int start_y, int start_x, int goal_y, int goal_x, int *Y, int *X );
 void PlayerDecreaseHealth( int Health );
+
+void PlayerEndGame( );
 
 #endif // __7DRLTYPES_H

@@ -3,6 +3,7 @@
 WINDOW *mainwin;
 
 unsigned int GameTime = 0;
+unsigned int GameRunning = 1;
 
 // Offset to center game pane in the available window.
 int offsetx, offsety;
@@ -94,7 +95,7 @@ int main( int argc, char *argv[] )
 
    win_update( );
 
-   while ( 1 )
+   while ( GameRunning )
    {
       unsigned long long start = getTimestamp( );
 
@@ -112,6 +113,8 @@ int main( int argc, char *argv[] )
    }
 
    win_shutdown( );
+
+   PlayerEndGame( );
 
    return 0;
 }
