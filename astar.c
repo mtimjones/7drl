@@ -4,6 +4,8 @@
 
 // Reused this code from my published book "AI Application Programming, 2nd Edition"
 
+//FILE *ofp;
+
 struct node_s;
 
 typedef struct node_s
@@ -16,15 +18,12 @@ typedef struct node_s
    int x;
 } node_t;
 
-#define MAX_LIST     50
+#define MAX_LIST     500
 
 typedef struct {
    int numElems;
    node_t *elem[ MAX_LIST ];
 } list_t;
-
-#define Y_MAX   MAP_NLINES
-#define X_MAX   MAP_NCOLS
 
 #define MIN_COST  ( ( double ) 1.0 )
 #define ALPHA     ( ( double ) 0.5 )
@@ -61,7 +60,7 @@ node_t *listFindBest( list_t *list_p )
 
    for ( i = 0 ; i < MAX_LIST ; i++ )
    {
-      if ( list_p->elem[i] != 0 ) 
+      if ( list_p->elem[i] ) 
       {
          best = i++;
          break;
@@ -70,7 +69,7 @@ node_t *listFindBest( list_t *list_p )
 
    for ( ; i < MAX_LIST ; i++ )
    {
-      if ( list_p->elem[i] != 0 )
+      if ( list_p->elem[i] )
       {
          if ( list_p->elem[i]->f < list_p->elem[best]->f )
          {
@@ -157,11 +156,11 @@ node_t *allocateNode( int y, int x )
 }
 
 const struct {
-   int y;
    int x;
-} succ[4] = { { -1, 0}, { 1, 0 }, { 0, 1 }, { 0, -1 } };
+   int y;
+} succ[4] = { { 0, -1}, { 0, 1 }, { 1, 0 }, { -1, 0 } };
 
-node_t *findSuccessorNode( node_t *curNode_p, int i )
+node_t *getNeighborNode( node_t *curNode_p, int i )
 {
    node_t *successor_p = ( node_t *)NULL;
    int y, x;
@@ -171,7 +170,7 @@ node_t *findSuccessorNode( node_t *curNode_p, int i )
    x = curNode_p->x + succ[i].x;
 
    item = map_get_item( y, x );
-   if ( ( item == SPACE_ICON ) || ( item == PLAYER_ICON ) )
+   if ( ( item == SPACE_ICON ) || ( item == PROTECTOR_ICON ) )
    {
       successor_p = allocateNode( y, x );
    }
@@ -209,6 +208,8 @@ void cleanup( void )
       if ( closedList_p.elem[ i ] ) free( closedList_p.elem[ i ] );
    }
 
+//   fclose( ofp );
+
    return;
 }
 
@@ -216,11 +217,13 @@ void getBestNextStep( node_t *walker, int *Y, int *X )
 {
    walker = ( node_t * )walker->parent;
 
-   while ( walker->parent )
-   {
-      *Y = walker->y; *X = walker->x;
-      walker = ( node_t * ) walker->parent;
-   }
+   *Y = walker->y, *X = walker->x;
+
+if ( 0 ) {
+   char line[80];
+   sprintf( line, "getBestNextStep %d, %d", *Y, *X );
+   add_message( line );
+}
 
    return;
 }
@@ -228,97 +231,119 @@ void getBestNextStep( node_t *walker, int *Y, int *X )
 
 void MoveTowardsPlayer( int start_y, int start_x, int goal_y, int goal_x, int *Y, int *X )
 {
-   node_t *curNode_p;
+   node_t *current;
+
+//   ofp = fopen( "trace.astar", "w" );
 
    // If we don't find a path, just remain calm...
    *Y = *X = 0;
 
+   // Initialize the open (frontier) and closed lists.
    listInit( &openList_p );
    listInit( &closedList_p );
 
-   start_node_p = allocateNode(start_y, start_x);
-
-   /* Begin with our start node as the initial node */
+   // Allocate our initial node (from the starting point) and add to the open list
+   start_node_p = allocateNode( start_y, start_x );
+   start_node_p->f = calc_h( start_node_p, start_y, start_x );
    listAdd( &openList_p, start_node_p );
 
-   while ( !listEmpty(&openList_p) ) {
+//   fprintf( ofp, "Start node at %d, %d\n", start_y, start_x );
+//   fprintf( ofp, "Goal node is %d, %d\n", goal_y, goal_x );
 
-     curNode_p = listFindBest( &openList_p );
-     (void)listGet( &openList_p, curNode_p->y, curNode_p->x, 1 );
-     listAdd( &closedList_p, curNode_p );
+   while ( !listEmpty(&openList_p) )
+   {
+      // Find the best node on the frontier
+      current = listFindBest( &openList_p );
 
-     if ((curNode_p->y == goal_y) && (curNode_p->x == goal_x)) 
-     {
-//       getBestNextStep( curNode_p, Y, X );
-       *Y = start_y - *Y;
-       *X = start_x - *X;
+      // Remove it from the open list
+      (void)listGet( &openList_p, current->y, current->x, 1 );
 
-       cleanup();
+      // Push it to the closed list
+      listAdd( &closedList_p, current );
 
-       return;
-     } else {
+      // Have we reached the goal?
+      if ((current->y == goal_y) && (current->x == goal_x)) 
+      {
+         getBestNextStep( current, Y, X );
 
-       int i;
-       node_t *successor_p;
-       node_t *temp;
+         *Y = *Y - goal_y;
+         *X = *X - goal_x;
 
-       for (i = 0 ; i < 4 ; i++) {
+         cleanup();
 
-         successor_p = findSuccessorNode( curNode_p, i );
+         return;
 
-         if (successor_p != (node_t *)NULL) {
+      } else {
 
-           successor_p->h = calc_h( successor_p, goal_y, goal_x );
-           successor_p->g = curNode_p->g + calc_g( curNode_p );
-           successor_p->f = successor_p->g + successor_p->h;
+         // Find each of the four conway neighbors
+         for ( int i = 0 ; i < 4 ; i++ ) 
+         {
+            node_t *neighbor;
+            node_t *stored_neighbor;
+            double tentative_Gscore = 0.0;
 
-           if (listPresent(&openList_p, successor_p->y, successor_p->x)) {
-          
-             temp = listGet( &openList_p, successor_p->y, successor_p->x, 0 );
+            neighbor = getNeighborNode( current, i );
 
-             if (temp->f < successor_p->f) {
+            // If this position is not legal, skip it.
+            if ( !neighbor ) continue;
 
-               free( successor_p );
+            // If this node is on the close list, ignore it and move on.
+            if ( listPresent( &closedList_p, neighbor->y, neighbor->x ) )
+            {
+               free( neighbor );
                continue;
+            }
 
-             }
+            // Calculate this neighbors gscore
+            tentative_Gscore = current->g + 1.0;
 
-           }
+            // If we're searching too far, just terminate early.
+            if ( tentative_Gscore > 20 )
+            {
+//               fprintf( ofp, "Early termination... %g\n", tentative_Gscore );
+               free( neighbor );
+               cleanup( );
+               return;
+            }
 
-           if (listPresent(&closedList_p, successor_p->y, successor_p->x)) {
-          
-             temp = listGet( &closedList_p, successor_p->y, successor_p->x, 0 );
+            stored_neighbor = listGet( &openList_p, neighbor->y, neighbor->x, 0 );
 
-             if (temp->f < successor_p->f) {
+            // Do we have a node on the open list already?
+            if ( stored_neighbor )
+            {
+               // Yes, but the score is lower, so leave it as is.
+               if ( tentative_Gscore >= stored_neighbor->g )
+               {
+                  free( neighbor );
+                  continue;
+               }
+               else
+               {
+                  // Remove the currently stored neighbor node at this position.
+                  listGet( &openList_p, neighbor->y, neighbor->x, 1 );
+                  
+                  // Add the new node here which is a better path.
+                  listAdd( &openList_p, neighbor );
+               }
+            }
+            else
+            {
+               // No node for this position, so add to the open list
+               listAdd( &openList_p, neighbor );
+            }
 
-               free( successor_p );
-               continue;
+            // Score this new neighbor.
+            neighbor->parent = current;
+            neighbor->g = tentative_Gscore;
+            neighbor->f = tentative_Gscore + calc_h( neighbor, goal_y, goal_x );
 
-             }
-
-           }
-
-           temp = listGet( &openList_p, 
-                            successor_p->y, successor_p->x, 1 );
-           if (temp) free(temp);
-
-           temp = listGet( &closedList_p, 
-                            successor_p->y, successor_p->x, 1 );
-           if (temp) free(temp);
-
-           successor_p->parent = (node_t *)curNode_p;
-           listAdd( &openList_p, successor_p );
-
+//            fprintf(ofp, "better %d, %d g%g f%g\n", neighbor->y, neighbor->x, neighbor->g, neighbor->f );
          }
-
-       }
-
-     }
-
+      }
    }
 
-   // Solution not found...
-  
+   // We failed to find a solution.
+   
    cleanup();
 
    return;

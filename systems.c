@@ -93,7 +93,7 @@ void SystemMovementFunction( )
 
    }
 
-#if 0
+#if 1
    // Animate the protectors.
    mask = COMPONENT_MOVEMENT | COMPONENT_PROTECTOR;
    for ( entity = 0 ; entity < MAX_ENTITIES ; entity++ )
@@ -111,10 +111,13 @@ void SystemMovementFunction( )
             // Reset the speed state.
             world.movement[ entity ].State = 0;
 
-            MoveTowardsPlayer( world.location[ entity ].Y, 
-                               world.location[ entity ].X,
+            // Note, we build a path from player to protector because it's easier to
+            // then figure out the next step for the protector (end of the list).
+            MoveTowardsPlayer( 
                                GetPlayerLocationY( ), 
                                GetPlayerLocationX( ), 
+                               world.location[ entity ].Y, 
+                               world.location[ entity ].X,
                                &dy, &dx );
 
             target = map_get_item( ( world.location[ entity ].Y + dy ),
