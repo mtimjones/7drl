@@ -153,11 +153,11 @@ void PlayerEndGame( void )
    extern unsigned int GameTime;
    if ( player.Health == 0 )
    {
-      printf( "You died at time %d.\n", GameTime );
+      printf( "You died at time %d.\n", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
    }
    else
    {
-      printf( "You escaped at time %d!\n", GameTime );
+      printf( "You escaped at time %d!\n", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
    }
    
    printf( "\nEnding Stats:\n" );
@@ -280,7 +280,7 @@ void PlayerCollision( int Y, int X )
 
       case BERRIES_ICON:
          PlayerAddHealth( BERRIES_HEALTH );
-         add_message( "You eat the berries." );
+         add_message( "You ate the berries." );
          map_place_item( Y, X, SPACE_ICON );
          break;
 
