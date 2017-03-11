@@ -33,7 +33,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add a dynamic legend which emits a description for the items on the screen. (Stretch)
 
-- [ ]  Add the secret door to escape.
+- [x]  Add the secret door to escape.
 
 - [ ]  Add a final score (calculated based upon time, things killed, strength of weapon, level, etc.).
 

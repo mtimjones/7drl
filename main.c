@@ -33,6 +33,8 @@ void win_update( void )
 {
    int Y, X;
 
+   extern int exit_y, exit_x;
+
    wborder( mainwin, 0, 0, 0, 0, 0, 0, 0, 0 );
 
    mvwhline( mainwin, ( MAP_NLINES - 1 ), 1, '-', ( NCOLS - 2 ) );
@@ -43,6 +45,7 @@ void win_update( void )
 
    win_map_viewport( Y, X );
 
+   mvwprintw( mainwin, 28, (MAP_NCOLS)+1, "Exit     %3d,%3d", exit_y, exit_x );
    mvwprintw( mainwin, 30, (MAP_NCOLS)+1, "Time     %7d", ( GameTime / ( 1000 / MS_PER_FRAME ) ) );
    mvwprintw( mainwin, 31, (MAP_NCOLS)+1, "Location %3d,%3d", Y, X );
 

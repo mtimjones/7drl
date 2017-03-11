@@ -49,6 +49,7 @@
 #define SLING_ICON        '('
 #define PROJECTILE_ICON   '.'
 #define BERRIES_ICON      '#'
+#define EXIT_ICON         '='
 
 #define NUM_SLING_BONUS_ITEMS     20
 #define NUM_BERRIES_ITEMS         20

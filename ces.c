@@ -167,7 +167,7 @@ unsigned int createProtector( )
       world.location[ entity ].Y = y;
       world.location[ entity ].X = x;
 
-      world.movement[ entity ].Speed = 4 + getRand( 3 );
+      world.movement[ entity ].Speed = 9 + getRand( 5 );
       world.movement[ entity ].State = 0;
 
       world.attack[ entity ].Attack = 2;

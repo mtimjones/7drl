@@ -3,6 +3,7 @@
 
 static char map[ Y_MAP_MAX ][ X_MAP_MAX ];
 
+int exit_y, exit_x;
 
 int IsAreaClear( int centerY, int centerX )
 {
@@ -91,6 +92,13 @@ void MapInit( void )
       } while ( !IsAreaClear( Y, X ) );
       map_place_item( Y, X, BERRIES_ICON );
    }
+
+   do {
+      exit_y = ( ( Y_MAP_MAX / 4 ) * 3 ) + getRand( ( Y_MAP_MAX / 4 ) );
+      exit_x = ( X_MAP_MAX / 4 ) + getRand( ( X_MAP_MAX / 2 ) );
+   } while ( !IsAreaClear( exit_y, exit_x ) );
+
+   map_place_item( exit_y, exit_x, EXIT_ICON );
 
    return;
 }

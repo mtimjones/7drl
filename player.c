@@ -150,13 +150,14 @@ void PlayerAddHealth( int health )
 
 void PlayerEndGame( void )
 {
+   extern unsigned int GameTime;
    if ( player.Health == 0 )
    {
-      printf( "You died.\n" );
+      printf( "You died at time %d.\n", GameTime );
    }
    else
    {
-      printf( "You escaped!\n" );
+      printf( "You escaped at time %d!\n", GameTime );
    }
    
    printf( "\nEnding Stats:\n" );
@@ -290,7 +291,22 @@ void PlayerCollision( int Y, int X )
          player.ArtifactsHeld++;
          if ( player.ArtifactsHeld == 5 )
          {
-            add_message( "Just 5 more artifacts and the exit is available." );
+            add_message( "Just 5 more artifact and the exit is available." );
+         }
+         break;
+
+      case EXIT_ICON:
+         // We've found the exit.
+         if ( player.ArtifactsHeld >= 10 )
+         {
+            extern unsigned int GameRunning;
+            GameRunning = 0;
+         }
+         else
+         {
+            char line[80];
+            sprintf( line, "You need %d more artifacts to escape.", 10 - player.ArtifactsHeld );
+            add_message( line );
          }
          break;
 
