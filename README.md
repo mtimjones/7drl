@@ -31,11 +31,7 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Add Protectors, with pathfinding to attack the player.
 
-- [ ]  Add a dynamic legend which emits a description for the items on the screen. (Stretch)
-
 - [x]  Add the secret door to escape.
-
-- [ ]  Add a final score (calculated based upon time, things killed, strength of weapon, level, etc.).
 
 - [x]  Add a function for distance to player.
 
@@ -43,19 +39,9 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [x]  Add A* pathfinding.
 
-- [ ]  In the stats section, show the direction of the closest animal and protector. (Stretch)
-
-- [ ]  Add support for mouse click detection (for projectiles). (Stretch)
-
 - [x]  Add a sling.  The sling shoots for 8 spaces (can be extended with sling bonus items).
 
 - [x]  Add sling bonus system (90% range, 10% shot bonus).
-
-- [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
-
-- [ ]  Add towers that emit enemies (near the exit).  Towers can be destroyed.
-
-- [ ]  Add ncurses color. (Stretch)
 
 - [x]  Need to detect player death and end game.
 
@@ -63,6 +49,19 @@ is a quick attempt at a roguelike in a short time (not sure if it will be fun or
 
 - [ ]  Add an end-game sequence where protectors appear around the exit requiring the player to kill them before escaping. (Stretch)
 
+- [ ]  Add a dynamic legend which emits a description for the items on the screen. (Stretch)
+
+- [ ]  Add towers that emit enemies (near the exit).  Towers can be destroyed. (Stretch)
+
+- [ ]  Add ncurses color. (Stretch)
+
+- [ ]  Add a final score (calculated based upon time, things killed, strength of weapon, level, etc.). (Stretch)
+
+- [ ]  In the stats section, show the direction of the closest animal and protector. (Stretch)
+
+- [ ]  Add support for mouse click detection (for projectiles). (Stretch)
+
+- [ ]  Think about weapons and effects.  Need to indicate a weapon in status, text-effect when used, damage differences (area), weapon types. (Stretch)
 
 # Dependencies
 
